@@ -43,6 +43,12 @@ public class MetricsSuite {
 		} 
 	}
 	
+	/**
+	 * @param url Pointer to WSDL document
+	 * @return The Data Weight (DW) of a WSDL (sec. 4.1 of 10.1049/iet-sen.2010.0089)
+	 * The DW of a given WSDL can be defined as the sum of the
+	 * data complexities of each input and output messages
+	 */
 	public int getDW(URL url) {
 		int DW = 0;
 		MessageComplexityCalculator c = new MessageComplexityCalculator();
@@ -67,6 +73,78 @@ public class MetricsSuite {
 			}
 		}
 		return DW;
+	}
+	
+	/**
+	 * @param url Pointer to WSDL document
+	 * @return The Distinct Message Ratio (DMR) of a WSDL (sec. 4.2 of 10.1049/iet-sen.2010.0089)
+	 * The DMR is derived from distinct message count (DMC) metric
+	 * and the total number of messages Nm.
+	 * 
+	 * For DMC see {@link MetricsSuite#getDMC(URL)}
+	 */
+	public double getDMR(URL url) {
+		int Nm = getMessageCount(url);
+		return getDMC(url) / Nm;
+	}
+	
+	/**
+	 * @param  url Pointer to WSDL document 
+	 * @return The Distinct Message Count (DMC) of a WSDL (sec. 4.2 of 10.1049/iet-sen.2010.0089)
+	 * The DMC is defined as the number of distinct structured messages 
+	 * represented by [C(M),arg] pair reflecting the message’s complexity 
+	 * value C(M) and total number of arguments arg that the message contains.
+	 * 
+	 * For [C(M),arg] see {@link Pair}
+	 */
+	public int getDMC(URL url) {
+		List<Pair> pairs = getMessagePairs(url);		
+		Set<Pair> noDups = new LinkedHashSet<Pair>(pairs);
+		Logger.getLogger(MetricsSuite.class.getName()).debug("Pares [C(M),Nargs] distintos: " + noDups.size());		
+		return noDups.size();
+	}
+	
+	/**
+	 * @param  url Pointer to WSDL document 
+	 * @return The ME of a WSDL document (sec. 4.3 of 10.1049/iet-sen.2010.0089)
+	 * The ME metric is intended to measure the complexity caused by 
+	 * occurrences of similar-structured messages.
+ 	 * This metric multiplies the probability of a message represented by [C(M ),arg] 
+ 	 * by its log_2. The probability of a pair [C(M ),arg] is its occurrences divided the total
+ 	 * number of messages.
+ 	 *  
+	 * 
+	 */
+	public double getME(URL url) {
+		double ME = 0.0;
+		List<Pair> pairs = getMessagePairs(url);			
+		double[] NOMs = getMessageOccurrences(pairs);
+		int Nm = getMessageCount(url);
+		for (int i = 0; i < NOMs.length; i++) {
+			Logger.getLogger(MetricsSuite.class.getName()).debug("Par: "+ i + " NOM: " + NOMs[i] + " Nm:" + Nm + " PM:" + NOMs[i]/Nm);
+			double log2 = Math.log(NOMs[i]/Nm)/Math.log(2);
+			ME += NOMs[i]/Nm * log2;
+		}
+		return  (-1)*ME;
+	}	
+	
+	/**
+	 * @param  url Pointer to WSDL document 
+	 * @return The MRS of a WSDL document (sec. 4.4 of 10.1049/iet-sen.2010.0089)
+	 * MRS metric is intended to analyze variety in structures of WSDL documents.
+	 * 
+	 */
+	public double getMRS(URL url) {
+		double MRS = 0.0;
+		List<Pair> pairs = getMessagePairs(url);
+		double[] NOMs = getMessageOccurrences(pairs);
+		int Nm = getMessageCount(url);
+		for (int i = 0; i < NOMs.length; i++) {
+			Logger.getLogger(MetricsSuite.class.getName()).debug("Par: "+ i + " NOM: " + NOMs[i] + " Nm:" + Nm + " PM:" + NOMs[i]/Nm);
+			double square = Math.pow(NOMs[i],2);
+			MRS += square;
+		}
+		return  MRS/Nm;
 	}
 	
 	
@@ -149,46 +227,17 @@ public class MetricsSuite {
 		return NOMs;
 	}
 	
-	public double getDMR(URL url) {
-		int Nm = getMessageCount(url);
-		return getDistinctMessageCount(url) / Nm;
-	}
-	
-	public int getDistinctMessageCount(URL url) {
-		List<Pair> pairs = getMessagePairs(url);		
-		Set<Pair> noDups = new LinkedHashSet<Pair>(pairs);
-		Logger.getLogger(MetricsSuite.class.getName()).debug("Pares [C(M),Nargs] distintos: " + noDups.size());		
-		return noDups.size();
-	}
-	
-	public double getME(URL url) {
-		double ME = 0.0;
-		List<Pair> pairs = getMessagePairs(url);			
-		double[] NOMs = getMessageOccurrences(pairs);
-		int Nm = getMessageCount(url);
-		for (int i = 0; i < NOMs.length; i++) {
-			Logger.getLogger(MetricsSuite.class.getName()).debug("Par: "+ i + " NOM: " + NOMs[i] + " Nm:" + Nm + " PM:" + NOMs[i]/Nm);
-			double log2 = Math.log(NOMs[i]/Nm)/Math.log(2);
-			ME += NOMs[i]/Nm * log2;
-		}
-		return  (-1)*ME;
-	}
-		
-	
-	public double getMRS(URL url) {
-		double MRS = 0.0;
-		List<Pair> pairs = getMessagePairs(url);
-		double[] NOMs = getMessageOccurrences(pairs);
-		int Nm = getMessageCount(url);
-		for (int i = 0; i < NOMs.length; i++) {
-			Logger.getLogger(MetricsSuite.class.getName()).debug("Par: "+ i + " NOM: " + NOMs[i] + " Nm:" + Nm + " PM:" + NOMs[i]/Nm);
-			double square = Math.pow(NOMs[i],2);
-			MRS += square;
-		}
-		return  MRS/Nm;
-	}
-	
-	
+	/**
+	 * Auxiliary class for modeling structured messages represented by
+	 * [C(M),arg] pair reflecting the message’s complexity value
+     * C(M) and total number of arguments arg that the message contains.
+     * 
+     * For C(M) see {@link MessageComplexityCalculator#calculateFor(org.ow2.easywsdl.schema.api.Element)}
+     * For arg see {@link MessageComplexityCalculator#countArgumentsFor(org.ow2.easywsdl.schema.api.Element)}
+     *  
+	 * @author mcrasso
+	 *
+	 */
 	class Pair {
 		int CM;
 		int Nargs;
