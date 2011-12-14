@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="GetVersion">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetVersionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetVersionResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPocasiByLogin">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="login" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pass" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="version" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPocasiByLoginResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPocasiByLoginResult" type="tns:ArrayOfPocasiElement" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfPocasiElement">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PocasiElement" nillable="true" type="tns:PocasiElement" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PocasiElement">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Nazev" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="PhotoMisto" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Teplota" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="Typ" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Srazky" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Stav" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Snih" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="SnihVyska" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="SnihVyskaNovy" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="SnihVyskaOd" type="s:float" />
+          <s:element minOccurs="1" maxOccurs="1" name="SnihVyskaDo" type="s:float" />
+          <s:element minOccurs="1" maxOccurs="1" name="SnihVyskaMimo" type="s:float" />
+          <s:element minOccurs="1" maxOccurs="1" name="VitrRychlost" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="VitrSmer" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Specifika" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="SpecifikaPozn" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PocetVleku" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Uprava" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Zdroj" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="Soubor" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Login" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Popis" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TypNote" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SrazkyNote" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="StavNote" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SnihNote" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="VitrRychlostNote" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="VitrSmerNote" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SpecifikaNote" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UpravaNote" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ZdrojNote" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Bezkyuprava" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Bezkydelka" type="s:float" />
+          <s:element minOccurs="1" maxOccurs="1" name="Bezkysnih" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Bezkysnihtyp" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Bezkypozn" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProvozniHodiny" type="tns:ProvozInfo" />
+          <s:element minOccurs="1" maxOccurs="1" name="Datum" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="SouborZoom" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ImgId" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ProvozInfo" />
+      <s:element name="GetPocasiById">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="login" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pass" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="mistoId" type="s:decimal" />
+            <s:element minOccurs="0" maxOccurs="1" name="version" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPocasiByIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPocasiByIdResult" type="tns:PocasiElement" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPocasiHistoryByLogin">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="login" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pass" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="mistoId" type="s:decimal" />
+            <s:element minOccurs="0" maxOccurs="1" name="version" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPocasiHistoryByLoginResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPocasiHistoryByLoginResult" type="tns:ArrayOfPocasiElement" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetInfoByLogin">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="login" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pass" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="version" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetInfoByLoginResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetInfoByLoginResult" type="tns:ArrayOfInfoElement" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfInfoElement">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="InfoElement" nillable="true" type="tns:InfoElement" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="InfoElement">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Nazev" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="PhotoMisto" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="NazevInfo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Abstrakt" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Link" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Zdroj" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Obsah" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Soubor" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Login" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Popis" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Datum" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="SouborZoom" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetInfoById">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="login" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pass" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="mistoId" type="s:decimal" />
+            <s:element minOccurs="0" maxOccurs="1" name="version" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetInfoByIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetInfoByIdResult" type="tns:InfoElement" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetInfoHistoryByLogin">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="login" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pass" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="mistoId" type="s:decimal" />
+            <s:element minOccurs="0" maxOccurs="1" name="version" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetInfoHistoryByLoginResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetInfoHistoryByLoginResult" type="tns:ArrayOfInfoElement" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetVersionSoapIn">
+    <wsdl:part name="parameters" element="tns:GetVersion" />
+  </wsdl:message>
+  <wsdl:message name="GetVersionSoapOut">
+    <wsdl:part name="parameters" element="tns:GetVersionResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPocasiByLoginSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPocasiByLogin" />
+  </wsdl:message>
+  <wsdl:message name="GetPocasiByLoginSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPocasiByLoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPocasiByIdSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPocasiById" />
+  </wsdl:message>
+  <wsdl:message name="GetPocasiByIdSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPocasiByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPocasiHistoryByLoginSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPocasiHistoryByLogin" />
+  </wsdl:message>
+  <wsdl:message name="GetPocasiHistoryByLoginSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPocasiHistoryByLoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetInfoByLoginSoapIn">
+    <wsdl:part name="parameters" element="tns:GetInfoByLogin" />
+  </wsdl:message>
+  <wsdl:message name="GetInfoByLoginSoapOut">
+    <wsdl:part name="parameters" element="tns:GetInfoByLoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetInfoByIdSoapIn">
+    <wsdl:part name="parameters" element="tns:GetInfoById" />
+  </wsdl:message>
+  <wsdl:message name="GetInfoByIdSoapOut">
+    <wsdl:part name="parameters" element="tns:GetInfoByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetInfoHistoryByLoginSoapIn">
+    <wsdl:part name="parameters" element="tns:GetInfoHistoryByLogin" />
+  </wsdl:message>
+  <wsdl:message name="GetInfoHistoryByLoginSoapOut">
+    <wsdl:part name="parameters" element="tns:GetInfoHistoryByLoginResponse" />
+  </wsdl:message>
+  <wsdl:portType name="PhotoserverSoap">
+    <wsdl:operation name="GetVersion">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Informace o aktuální verzi</wsdl:documentation>
+      <wsdl:input message="tns:GetVersionSoapIn" />
+      <wsdl:output message="tns:GetVersionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPocasiByLogin">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Nejnovejsi pocasi podle identifikace uzivatele</wsdl:documentation>
+      <wsdl:input message="tns:GetPocasiByLoginSoapIn" />
+      <wsdl:output message="tns:GetPocasiByLoginSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPocasiById">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Nejnovejsi pocasi podle id mista a identifikace uzivatele</wsdl:documentation>
+      <wsdl:input message="tns:GetPocasiByIdSoapIn" />
+      <wsdl:output message="tns:GetPocasiByIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPocasiHistoryByLogin">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Nejnovejsi 5 (historie) pocasi podle id mista a identifikace uzivatele</wsdl:documentation>
+      <wsdl:input message="tns:GetPocasiHistoryByLoginSoapIn" />
+      <wsdl:output message="tns:GetPocasiHistoryByLoginSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetInfoByLogin">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Nejnovejsi [info] podle identifikace uzivatele</wsdl:documentation>
+      <wsdl:input message="tns:GetInfoByLoginSoapIn" />
+      <wsdl:output message="tns:GetInfoByLoginSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetInfoById">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Nejnovejsi [info] podle id mista a identifikace uzivatele</wsdl:documentation>
+      <wsdl:input message="tns:GetInfoByIdSoapIn" />
+      <wsdl:output message="tns:GetInfoByIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetInfoHistoryByLogin">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Nejnovejsi 5 (historie) [info] podle id mista a identifikace uzivatele</wsdl:documentation>
+      <wsdl:input message="tns:GetInfoHistoryByLoginSoapIn" />
+      <wsdl:output message="tns:GetInfoHistoryByLoginSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="PhotoserverSoap" type="tns:PhotoserverSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetVersion">
+      <soap:operation soapAction="http://tempuri.org/GetVersion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPocasiByLogin">
+      <soap:operation soapAction="http://tempuri.org/GetPocasiByLogin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPocasiById">
+      <soap:operation soapAction="http://tempuri.org/GetPocasiById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPocasiHistoryByLogin">
+      <soap:operation soapAction="http://tempuri.org/GetPocasiHistoryByLogin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInfoByLogin">
+      <soap:operation soapAction="http://tempuri.org/GetInfoByLogin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInfoById">
+      <soap:operation soapAction="http://tempuri.org/GetInfoById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInfoHistoryByLogin">
+      <soap:operation soapAction="http://tempuri.org/GetInfoHistoryByLogin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="PhotoserverSoap12" type="tns:PhotoserverSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetVersion">
+      <soap12:operation soapAction="http://tempuri.org/GetVersion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPocasiByLogin">
+      <soap12:operation soapAction="http://tempuri.org/GetPocasiByLogin" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPocasiById">
+      <soap12:operation soapAction="http://tempuri.org/GetPocasiById" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPocasiHistoryByLogin">
+      <soap12:operation soapAction="http://tempuri.org/GetPocasiHistoryByLogin" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInfoByLogin">
+      <soap12:operation soapAction="http://tempuri.org/GetInfoByLogin" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInfoById">
+      <soap12:operation soapAction="http://tempuri.org/GetInfoById" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInfoHistoryByLogin">
+      <soap12:operation soapAction="http://tempuri.org/GetInfoHistoryByLogin" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Photoserver">
+    <wsdl:port name="PhotoserverSoap" binding="tns:PhotoserverSoap">
+      <soap:address location="http://www.inphoto.cz/Service/PhotoServer.asmx" />
+    </wsdl:port>
+    <wsdl:port name="PhotoserverSoap12" binding="tns:PhotoserverSoap12">
+      <soap12:address location="http://www.inphoto.cz/Service/PhotoServer.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

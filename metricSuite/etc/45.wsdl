@@ -1,0 +1,490 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.sipeaa.it/asp/webservices/et/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://www.sipeaa.it/asp/webservices/et/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.sipeaa.it/asp/webservices/et/">
+      <s:element name="VaporPressureDeficit">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="maxAirTemperature" type="s:double" />
+            <s:element minOccurs="1" maxOccurs="1" name="minAirTemperature" type="s:double" />
+            <s:element minOccurs="1" maxOccurs="1" name="maxRelativeAirHumidity" type="s:double" />
+            <s:element minOccurs="1" maxOccurs="1" name="minRelativeAirHumidity" type="s:double" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="VaporPressureDeficitResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="VaporPressureDeficitResult" type="s:double" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SaturatedVaporPressure">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="maxAirTemperature" type="s:double" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SaturatedVaporPressureResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SaturatedVaporPressureResult" type="s:double" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SlopeSaturatedVaporPressure">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="maxAirTemperature" type="s:double" />
+            <s:element minOccurs="1" maxOccurs="1" name="minAirTemperature" type="s:double" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SlopeSaturatedVaporPressureResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SlopeSaturatedVaporPressureResult" type="s:double" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ActualVaporPressure">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="maxAirTemperature" type="s:double" />
+            <s:element minOccurs="1" maxOccurs="1" name="minAirTemperature" type="s:double" />
+            <s:element minOccurs="1" maxOccurs="1" name="maxRelativeAirHumidity" type="s:double" />
+            <s:element minOccurs="1" maxOccurs="1" name="minRelativeAirHumidity" type="s:double" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ActualVaporPressureResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ActualVaporPressureResult" type="s:double" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IsothermalLongWaveNetRadiation">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="maxAirTemperature" type="s:double" />
+            <s:element minOccurs="1" maxOccurs="1" name="minAirTemperature" type="s:double" />
+            <s:element minOccurs="1" maxOccurs="1" name="potentialSolarRadiation" type="s:double" />
+            <s:element minOccurs="1" maxOccurs="1" name="globalSolarRadiation" type="s:double" />
+            <s:element minOccurs="1" maxOccurs="1" name="clearSkyTransmissivity" type="s:double" />
+            <s:element minOccurs="1" maxOccurs="1" name="windMeasurementHeight" type="s:double" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IsothermalLongWaveNetRadiationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="IsothermalLongWaveNetRadiationResult" type="s:double" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="NetRadiation">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="maxAirTemperature" type="s:double" />
+            <s:element minOccurs="1" maxOccurs="1" name="minAirTemperature" type="s:double" />
+            <s:element minOccurs="1" maxOccurs="1" name="potentialSolarRadiation" type="s:double" />
+            <s:element minOccurs="1" maxOccurs="1" name="globalSolarRadiation" type="s:double" />
+            <s:element minOccurs="1" maxOccurs="1" name="clearSkyTransmissivity" type="s:double" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="NetRadiationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="NetRadiationResult" type="s:double" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReferenceETPenmanMonteith">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="maxAirTemperature" type="s:double" />
+            <s:element minOccurs="1" maxOccurs="1" name="minAirTemperature" type="s:double" />
+            <s:element minOccurs="1" maxOccurs="1" name="potentialSolarRadiation" type="s:double" />
+            <s:element minOccurs="1" maxOccurs="1" name="globalSolarRadiation" type="s:double" />
+            <s:element minOccurs="1" maxOccurs="1" name="clearSkyTransmissivity" type="s:double" />
+            <s:element minOccurs="1" maxOccurs="1" name="windSpeed" type="s:double" />
+            <s:element minOccurs="1" maxOccurs="1" name="windMeasurementHeight" type="s:double" />
+            <s:element minOccurs="1" maxOccurs="1" name="maxRelativeAirHumidity" type="s:double" />
+            <s:element minOccurs="1" maxOccurs="1" name="minRelativeAirHumidity" type="s:double" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReferenceETPenmanMonteithResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ReferenceETPenmanMonteithResult" type="s:double" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReferenceETPenmanMonteithHourly">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="hourlyAirTemperature" type="tns:ArrayOfDouble" />
+            <s:element minOccurs="0" maxOccurs="1" name="hourlyPotentialSolarRadiation" type="tns:ArrayOfDouble" />
+            <s:element minOccurs="0" maxOccurs="1" name="hourlyGlobalSolarRadiation" type="tns:ArrayOfDouble" />
+            <s:element minOccurs="1" maxOccurs="1" name="clearSkyTransmissivity" type="s:double" />
+            <s:element minOccurs="0" maxOccurs="1" name="hourlyWindSpeed" type="tns:ArrayOfDouble" />
+            <s:element minOccurs="1" maxOccurs="1" name="windMeasurementHeight" type="s:double" />
+            <s:element minOccurs="0" maxOccurs="1" name="hourlyRelativeAirHumidity" type="tns:ArrayOfDouble" />
+            <s:element minOccurs="1" maxOccurs="1" name="potentialSolarRadiation" type="s:double" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDouble">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="double" type="s:double" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ReferenceETPenmanMonteithHourlyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ReferenceETPenmanMonteithHourlyResult" type="tns:ArrayOfDouble" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="VaporPressureDeficitHourly">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="hourlyAirTemperature" type="tns:ArrayOfDouble" />
+            <s:element minOccurs="0" maxOccurs="1" name="hourlyPotentialSolarRadiation" type="tns:ArrayOfDouble" />
+            <s:element minOccurs="0" maxOccurs="1" name="hourlyGlobalSolarRadiation" type="tns:ArrayOfDouble" />
+            <s:element minOccurs="1" maxOccurs="1" name="clearSkyTransmissivity" type="s:double" />
+            <s:element minOccurs="0" maxOccurs="1" name="hourlyWindSpeed" type="tns:ArrayOfDouble" />
+            <s:element minOccurs="1" maxOccurs="1" name="windMeasurementHeight" type="s:double" />
+            <s:element minOccurs="0" maxOccurs="1" name="hourlyRelativeAirHumidity" type="tns:ArrayOfDouble" />
+            <s:element minOccurs="1" maxOccurs="1" name="potentialSolarRadiation" type="s:double" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="VaporPressureDeficitHourlyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="VaporPressureDeficitHourlyResult" type="tns:ArrayOfDouble" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReferenceETHargreaves">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="maxAirTemperature" type="s:double" />
+            <s:element minOccurs="1" maxOccurs="1" name="minAirTemperature" type="s:double" />
+            <s:element minOccurs="1" maxOccurs="1" name="potentialSolarRadiation" type="s:double" />
+            <s:element minOccurs="1" maxOccurs="1" name="slopeHargreaves" type="s:double" />
+            <s:element minOccurs="1" maxOccurs="1" name="interceptHargreaves" type="s:double" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReferenceETHargreavesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ReferenceETHargreavesResult" type="s:double" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="VaporPressureDeficitSoapIn">
+    <wsdl:part name="parameters" element="tns:VaporPressureDeficit" />
+  </wsdl:message>
+  <wsdl:message name="VaporPressureDeficitSoapOut">
+    <wsdl:part name="parameters" element="tns:VaporPressureDeficitResponse" />
+  </wsdl:message>
+  <wsdl:message name="SaturatedVaporPressureSoapIn">
+    <wsdl:part name="parameters" element="tns:SaturatedVaporPressure" />
+  </wsdl:message>
+  <wsdl:message name="SaturatedVaporPressureSoapOut">
+    <wsdl:part name="parameters" element="tns:SaturatedVaporPressureResponse" />
+  </wsdl:message>
+  <wsdl:message name="SlopeSaturatedVaporPressureSoapIn">
+    <wsdl:part name="parameters" element="tns:SlopeSaturatedVaporPressure" />
+  </wsdl:message>
+  <wsdl:message name="SlopeSaturatedVaporPressureSoapOut">
+    <wsdl:part name="parameters" element="tns:SlopeSaturatedVaporPressureResponse" />
+  </wsdl:message>
+  <wsdl:message name="ActualVaporPressureSoapIn">
+    <wsdl:part name="parameters" element="tns:ActualVaporPressure" />
+  </wsdl:message>
+  <wsdl:message name="ActualVaporPressureSoapOut">
+    <wsdl:part name="parameters" element="tns:ActualVaporPressureResponse" />
+  </wsdl:message>
+  <wsdl:message name="IsothermalLongWaveNetRadiationSoapIn">
+    <wsdl:part name="parameters" element="tns:IsothermalLongWaveNetRadiation" />
+  </wsdl:message>
+  <wsdl:message name="IsothermalLongWaveNetRadiationSoapOut">
+    <wsdl:part name="parameters" element="tns:IsothermalLongWaveNetRadiationResponse" />
+  </wsdl:message>
+  <wsdl:message name="NetRadiationSoapIn">
+    <wsdl:part name="parameters" element="tns:NetRadiation" />
+  </wsdl:message>
+  <wsdl:message name="NetRadiationSoapOut">
+    <wsdl:part name="parameters" element="tns:NetRadiationResponse" />
+  </wsdl:message>
+  <wsdl:message name="ReferenceETPenmanMonteithSoapIn">
+    <wsdl:part name="parameters" element="tns:ReferenceETPenmanMonteith" />
+  </wsdl:message>
+  <wsdl:message name="ReferenceETPenmanMonteithSoapOut">
+    <wsdl:part name="parameters" element="tns:ReferenceETPenmanMonteithResponse" />
+  </wsdl:message>
+  <wsdl:message name="ReferenceETPenmanMonteithHourlySoapIn">
+    <wsdl:part name="parameters" element="tns:ReferenceETPenmanMonteithHourly" />
+  </wsdl:message>
+  <wsdl:message name="ReferenceETPenmanMonteithHourlySoapOut">
+    <wsdl:part name="parameters" element="tns:ReferenceETPenmanMonteithHourlyResponse" />
+  </wsdl:message>
+  <wsdl:message name="VaporPressureDeficitHourlySoapIn">
+    <wsdl:part name="parameters" element="tns:VaporPressureDeficitHourly" />
+  </wsdl:message>
+  <wsdl:message name="VaporPressureDeficitHourlySoapOut">
+    <wsdl:part name="parameters" element="tns:VaporPressureDeficitHourlyResponse" />
+  </wsdl:message>
+  <wsdl:message name="ReferenceETHargreavesSoapIn">
+    <wsdl:part name="parameters" element="tns:ReferenceETHargreaves" />
+  </wsdl:message>
+  <wsdl:message name="ReferenceETHargreavesSoapOut">
+    <wsdl:part name="parameters" element="tns:ReferenceETHargreavesResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ISCI_CLIMA_ServiceETSoap">
+    <wsdl:operation name="VaporPressureDeficit">
+      <wsdl:input message="tns:VaporPressureDeficitSoapIn" />
+      <wsdl:output message="tns:VaporPressureDeficitSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SaturatedVaporPressure">
+      <wsdl:input message="tns:SaturatedVaporPressureSoapIn" />
+      <wsdl:output message="tns:SaturatedVaporPressureSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SlopeSaturatedVaporPressure">
+      <wsdl:input message="tns:SlopeSaturatedVaporPressureSoapIn" />
+      <wsdl:output message="tns:SlopeSaturatedVaporPressureSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ActualVaporPressure">
+      <wsdl:input message="tns:ActualVaporPressureSoapIn" />
+      <wsdl:output message="tns:ActualVaporPressureSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IsothermalLongWaveNetRadiation">
+      <wsdl:input message="tns:IsothermalLongWaveNetRadiationSoapIn" />
+      <wsdl:output message="tns:IsothermalLongWaveNetRadiationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="NetRadiation">
+      <wsdl:input message="tns:NetRadiationSoapIn" />
+      <wsdl:output message="tns:NetRadiationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ReferenceETPenmanMonteith">
+      <wsdl:input message="tns:ReferenceETPenmanMonteithSoapIn" />
+      <wsdl:output message="tns:ReferenceETPenmanMonteithSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ReferenceETPenmanMonteithHourly">
+      <wsdl:input message="tns:ReferenceETPenmanMonteithHourlySoapIn" />
+      <wsdl:output message="tns:ReferenceETPenmanMonteithHourlySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="VaporPressureDeficitHourly">
+      <wsdl:input message="tns:VaporPressureDeficitHourlySoapIn" />
+      <wsdl:output message="tns:VaporPressureDeficitHourlySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ReferenceETHargreaves">
+      <wsdl:input message="tns:ReferenceETHargreavesSoapIn" />
+      <wsdl:output message="tns:ReferenceETHargreavesSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ISCI_CLIMA_ServiceETSoap" type="tns:ISCI_CLIMA_ServiceETSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="VaporPressureDeficit">
+      <soap:operation soapAction="http://www.sipeaa.it/asp/webservices/et/VaporPressureDeficit" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaturatedVaporPressure">
+      <soap:operation soapAction="http://www.sipeaa.it/asp/webservices/et/SaturatedVaporPressure" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SlopeSaturatedVaporPressure">
+      <soap:operation soapAction="http://www.sipeaa.it/asp/webservices/et/SlopeSaturatedVaporPressure" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActualVaporPressure">
+      <soap:operation soapAction="http://www.sipeaa.it/asp/webservices/et/ActualVaporPressure" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsothermalLongWaveNetRadiation">
+      <soap:operation soapAction="http://www.sipeaa.it/asp/webservices/et/IsothermalLongWaveNetRadiation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NetRadiation">
+      <soap:operation soapAction="http://www.sipeaa.it/asp/webservices/et/NetRadiation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReferenceETPenmanMonteith">
+      <soap:operation soapAction="http://www.sipeaa.it/asp/webservices/et/ReferenceETPenmanMonteith" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReferenceETPenmanMonteithHourly">
+      <soap:operation soapAction="http://www.sipeaa.it/asp/webservices/et/ReferenceETPenmanMonteithHourly" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VaporPressureDeficitHourly">
+      <soap:operation soapAction="http://www.sipeaa.it/asp/webservices/et/VaporPressureDeficitHourly" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReferenceETHargreaves">
+      <soap:operation soapAction="http://www.sipeaa.it/asp/webservices/et/ReferenceETHargreaves" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ISCI_CLIMA_ServiceETSoap12" type="tns:ISCI_CLIMA_ServiceETSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="VaporPressureDeficit">
+      <soap12:operation soapAction="http://www.sipeaa.it/asp/webservices/et/VaporPressureDeficit" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaturatedVaporPressure">
+      <soap12:operation soapAction="http://www.sipeaa.it/asp/webservices/et/SaturatedVaporPressure" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SlopeSaturatedVaporPressure">
+      <soap12:operation soapAction="http://www.sipeaa.it/asp/webservices/et/SlopeSaturatedVaporPressure" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActualVaporPressure">
+      <soap12:operation soapAction="http://www.sipeaa.it/asp/webservices/et/ActualVaporPressure" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsothermalLongWaveNetRadiation">
+      <soap12:operation soapAction="http://www.sipeaa.it/asp/webservices/et/IsothermalLongWaveNetRadiation" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NetRadiation">
+      <soap12:operation soapAction="http://www.sipeaa.it/asp/webservices/et/NetRadiation" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReferenceETPenmanMonteith">
+      <soap12:operation soapAction="http://www.sipeaa.it/asp/webservices/et/ReferenceETPenmanMonteith" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReferenceETPenmanMonteithHourly">
+      <soap12:operation soapAction="http://www.sipeaa.it/asp/webservices/et/ReferenceETPenmanMonteithHourly" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VaporPressureDeficitHourly">
+      <soap12:operation soapAction="http://www.sipeaa.it/asp/webservices/et/VaporPressureDeficitHourly" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReferenceETHargreaves">
+      <soap12:operation soapAction="http://www.sipeaa.it/asp/webservices/et/ReferenceETHargreaves" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ISCI_CLIMA_ServiceET">
+    <wsdl:port name="ISCI_CLIMA_ServiceETSoap" binding="tns:ISCI_CLIMA_ServiceETSoap">
+      <soap:address location="http://www.sipeaa.it/wset/ServiceET.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ISCI_CLIMA_ServiceETSoap12" binding="tns:ISCI_CLIMA_ServiceETSoap12">
+      <soap12:address location="http://www.sipeaa.it/wset/ServiceET.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

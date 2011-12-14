@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.geoservicios.com/v2.0" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://www.geoservicios.com/v2.0" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">GEOSERVICIOS. Servicios Web Geográficos. Añada capacidades geográficas a su aplicación mediante el servicio Geocodificación V2.0. Geograma®. Teléfono +34945131372</wsdl:documentation>
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.geoservicios.com/v2.0">
+      <s:element name="ObtenerDescripcion">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="codigo" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtenerDescripcionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ObtenerDescripcionResult" type="tns:InfObtenerDescripcion" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="InfObtenerDescripcion">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Descripcion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Detalle" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="BuscaDir">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="calle" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="codpos" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="poblacion" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="provincia" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="conf" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="testigo" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BuscaDirResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BuscaDirResult" type="tns:InfoBuscaDir" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="InfoBuscaDir">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Estado" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CodError" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OrigenError" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Candidatos" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="TipoCoincidencia" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Localizaciones" type="tns:ArrayOfListaLocalizaciones" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfListaLocalizaciones">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ListaLocalizaciones" nillable="true" type="tns:ListaLocalizaciones" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ListaLocalizaciones">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="idLocalizacion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nivel" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="tipovia" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nombrevia" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="npolicia" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cpostal" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cmuni" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="municipio" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="poblacion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="provincia" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="LocalizaDir">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:double" />
+            <s:element minOccurs="0" maxOccurs="1" name="nivel" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="npolicia" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="conf" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="testigo" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LocalizaDirResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LocalizaDirResult" type="tns:InfoLocalizaDir" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="InfoLocalizaDir">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Estado" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CodError" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OrigenError" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SistemaCoordenadas" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="X" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="Y" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="DistanciaPortal" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="TipoGC" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="SubTipoGC" type="s:unsignedByte" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ObtenerDescripcionSoapIn">
+    <wsdl:part name="parameters" element="tns:ObtenerDescripcion" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerDescripcionSoapOut">
+    <wsdl:part name="parameters" element="tns:ObtenerDescripcionResponse" />
+  </wsdl:message>
+  <wsdl:message name="BuscaDirSoapIn">
+    <wsdl:part name="parameters" element="tns:BuscaDir" />
+  </wsdl:message>
+  <wsdl:message name="BuscaDirSoapOut">
+    <wsdl:part name="parameters" element="tns:BuscaDirResponse" />
+  </wsdl:message>
+  <wsdl:message name="LocalizaDirSoapIn">
+    <wsdl:part name="parameters" element="tns:LocalizaDir" />
+  </wsdl:message>
+  <wsdl:message name="LocalizaDirSoapOut">
+    <wsdl:part name="parameters" element="tns:LocalizaDirResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ServicioGeocodificacionSoap">
+    <wsdl:operation name="ObtenerDescripcion">
+      <wsdl:input message="tns:ObtenerDescripcionSoapIn" />
+      <wsdl:output message="tns:ObtenerDescripcionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BuscaDir">
+      <wsdl:input message="tns:BuscaDirSoapIn" />
+      <wsdl:output message="tns:BuscaDirSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LocalizaDir">
+      <wsdl:input message="tns:LocalizaDirSoapIn" />
+      <wsdl:output message="tns:LocalizaDirSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ServicioGeocodificacionSoap" type="tns:ServicioGeocodificacionSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerDescripcion">
+      <soap:operation soapAction="http://www.geoservicios.com/v2.0/ObtenerDescripcion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BuscaDir">
+      <soap:operation soapAction="http://www.geoservicios.com/v2.0/BuscaDir" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LocalizaDir">
+      <soap:operation soapAction="http://www.geoservicios.com/v2.0/LocalizaDir" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ServicioGeocodificacionSoap12" type="tns:ServicioGeocodificacionSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerDescripcion">
+      <soap12:operation soapAction="http://www.geoservicios.com/v2.0/ObtenerDescripcion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BuscaDir">
+      <soap12:operation soapAction="http://www.geoservicios.com/v2.0/BuscaDir" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LocalizaDir">
+      <soap12:operation soapAction="http://www.geoservicios.com/v2.0/LocalizaDir" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ServicioGeocodificacion">
+    <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">GEOSERVICIOS. Servicios Web Geográficos. Añada capacidades geográficas a su aplicación mediante el servicio Geocodificación V2.0. Geograma®. Teléfono +34945131372</wsdl:documentation>
+    <wsdl:port name="ServicioGeocodificacionSoap" binding="tns:ServicioGeocodificacionSoap">
+      <soap:address location="http://www.geoservicios.com/V2.0/sgeo/sgeo.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ServicioGeocodificacionSoap12" binding="tns:ServicioGeocodificacionSoap12">
+      <soap12:address location="http://www.geoservicios.com/V2.0/sgeo/sgeo.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="elGuille" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="elGuille" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Hola, Mundo al estilo Web Service</wsdl:documentation>
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="elGuille">
+      <s:element name="Saludar">
+        <s:complexType />
+      </s:element>
+      <s:element name="SaludarResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SaludarResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Saludo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="nombre" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SaludoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SaludoResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="SaludarSoapIn">
+    <wsdl:part name="parameters" element="tns:Saludar" />
+  </wsdl:message>
+  <wsdl:message name="SaludarSoapOut">
+    <wsdl:part name="parameters" element="tns:SaludarResponse" />
+  </wsdl:message>
+  <wsdl:message name="SaludoSoapIn">
+    <wsdl:part name="parameters" element="tns:Saludo" />
+  </wsdl:message>
+  <wsdl:message name="SaludoSoapOut">
+    <wsdl:part name="parameters" element="tns:SaludoResponse" />
+  </wsdl:message>
+  <wsdl:portType name="HolaMundoWebSSoap">
+    <wsdl:operation name="Saludar">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Devuelve la cadena Hola, Mundo</wsdl:documentation>
+      <wsdl:input message="tns:SaludarSoapIn" />
+      <wsdl:output message="tns:SaludarSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Saludo">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Devuelve Hola, seguido del nombre indicado en el parámetro.</wsdl:documentation>
+      <wsdl:input message="tns:SaludoSoapIn" />
+      <wsdl:output message="tns:SaludoSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="HolaMundoWebSSoap" type="tns:HolaMundoWebSSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Saludar">
+      <soap:operation soapAction="elGuille/Saludar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Saludo">
+      <soap:operation soapAction="elGuille/Saludo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="HolaMundoWebSSoap12" type="tns:HolaMundoWebSSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Saludar">
+      <soap12:operation soapAction="elGuille/Saludar" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Saludo">
+      <soap12:operation soapAction="elGuille/Saludo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="HolaMundoWebS">
+    <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Hola, Mundo al estilo Web Service</wsdl:documentation>
+    <wsdl:port name="HolaMundoWebSSoap" binding="tns:HolaMundoWebSSoap">
+      <soap:address location="http://www.elguille.info/NET/WebServices/HolaMundoWebS.asmx" />
+    </wsdl:port>
+    <wsdl:port name="HolaMundoWebSSoap12" binding="tns:HolaMundoWebSSoap12">
+      <soap12:address location="http://www.elguille.info/NET/WebServices/HolaMundoWebS.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
