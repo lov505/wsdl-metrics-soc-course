@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://webservices.freshegg.com/resources/service1" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://webservices.freshegg.com/resources/service1" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://webservices.freshegg.com/resources/service1">
+      <s:element name="getLinks">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ClientID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="categoryID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getLinksResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getLinksResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getCategories">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ClientID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getCategoriesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getCategoriesResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getCategory">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ClientID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="categoryID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getCategoryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getCategoryResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getCategoryID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ClientID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="linkCat" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getCategoryIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getCategoryIDResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="insertLinkRequest">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ClientID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="inCompany" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="inTitle" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="inDescription" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="inURL" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="inTheme" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="inLinksPage" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="inFirstName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="inEmail" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="inComments" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="insertLinkRequestResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="insertLinkRequestResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="getLinksSoapIn">
+    <wsdl:part name="parameters" element="tns:getLinks" />
+  </wsdl:message>
+  <wsdl:message name="getLinksSoapOut">
+    <wsdl:part name="parameters" element="tns:getLinksResponse" />
+  </wsdl:message>
+  <wsdl:message name="getCategoriesSoapIn">
+    <wsdl:part name="parameters" element="tns:getCategories" />
+  </wsdl:message>
+  <wsdl:message name="getCategoriesSoapOut">
+    <wsdl:part name="parameters" element="tns:getCategoriesResponse" />
+  </wsdl:message>
+  <wsdl:message name="getCategorySoapIn">
+    <wsdl:part name="parameters" element="tns:getCategory" />
+  </wsdl:message>
+  <wsdl:message name="getCategorySoapOut">
+    <wsdl:part name="parameters" element="tns:getCategoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="getCategoryIDSoapIn">
+    <wsdl:part name="parameters" element="tns:getCategoryID" />
+  </wsdl:message>
+  <wsdl:message name="getCategoryIDSoapOut">
+    <wsdl:part name="parameters" element="tns:getCategoryIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="insertLinkRequestSoapIn">
+    <wsdl:part name="parameters" element="tns:insertLinkRequest" />
+  </wsdl:message>
+  <wsdl:message name="insertLinkRequestSoapOut">
+    <wsdl:part name="parameters" element="tns:insertLinkRequestResponse" />
+  </wsdl:message>
+  <wsdl:portType name="Service1Soap">
+    <wsdl:operation name="getLinks">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retrieve Link Strategy Results</wsdl:documentation>
+      <wsdl:input message="tns:getLinksSoapIn" />
+      <wsdl:output message="tns:getLinksSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getCategories">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retrieve Link Strategy Categories</wsdl:documentation>
+      <wsdl:input message="tns:getCategoriesSoapIn" />
+      <wsdl:output message="tns:getCategoriesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getCategory">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retrieve Link Strategy Category Informaion</wsdl:documentation>
+      <wsdl:input message="tns:getCategorySoapIn" />
+      <wsdl:output message="tns:getCategorySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getCategoryID">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retrieve Link Strategy CategoryID</wsdl:documentation>
+      <wsdl:input message="tns:getCategoryIDSoapIn" />
+      <wsdl:output message="tns:getCategoryIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="insertLinkRequest">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Insert Link Request Details</wsdl:documentation>
+      <wsdl:input message="tns:insertLinkRequestSoapIn" />
+      <wsdl:output message="tns:insertLinkRequestSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="Service1Soap" type="tns:Service1Soap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="getLinks">
+      <soap:operation soapAction="http://webservices.freshegg.com/resources/service1/getLinks" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCategories">
+      <soap:operation soapAction="http://webservices.freshegg.com/resources/service1/getCategories" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCategory">
+      <soap:operation soapAction="http://webservices.freshegg.com/resources/service1/getCategory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCategoryID">
+      <soap:operation soapAction="http://webservices.freshegg.com/resources/service1/getCategoryID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="insertLinkRequest">
+      <soap:operation soapAction="http://webservices.freshegg.com/resources/service1/insertLinkRequest" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="Service1Soap12" type="tns:Service1Soap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="getLinks">
+      <soap12:operation soapAction="http://webservices.freshegg.com/resources/service1/getLinks" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCategories">
+      <soap12:operation soapAction="http://webservices.freshegg.com/resources/service1/getCategories" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCategory">
+      <soap12:operation soapAction="http://webservices.freshegg.com/resources/service1/getCategory" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCategoryID">
+      <soap12:operation soapAction="http://webservices.freshegg.com/resources/service1/getCategoryID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="insertLinkRequest">
+      <soap12:operation soapAction="http://webservices.freshegg.com/resources/service1/insertLinkRequest" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Service1">
+    <wsdl:port name="Service1Soap" binding="tns:Service1Soap">
+      <soap:address location="http://webservices.freshegg.com/resources/service1.asmx" />
+    </wsdl:port>
+    <wsdl:port name="Service1Soap12" binding="tns:Service1Soap12">
+      <soap12:address location="http://webservices.freshegg.com/resources/service1.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="UTF-8"?> 
+<xsd:schema xmlns="http://www.w3.org/2001/XMLSchema"  
+xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xmlns:wsa="http://schemas.xmlsoap.org/ws/2003/03/addressing" 
+xmlns:wsbf="http://www.ibm.com/xmlns/stdwip/web-services/WS-BaseFaults" 
+targetNamespace="http://www.ibm.com/xmlns/stdwip/web-services/WS-BaseFaults"> 
+<xsd:import 
+  namespace="http://schemas.xmlsoap.org/ws/2003/03/addressing" 
+  schemaLocation="http://schemas.xmlsoap.org/ws/2003/03/addressing"
+/> 
+<xsd:import namespace="http://www.w3.org/XML/1998/namespace"  
+schemaLocation="http://www.w3.org/2001/xml.xsd"/>             
+    <xsd:element name="BaseFault" type="wsbf:BaseFaultType"/> 
+    <xsd:complexType name="BaseFaultType"> 
+        <xsd:sequence> 
+         <xsd:element name="Timestamp" type="xsd:dateTime" minOccurs="1" maxOccurs="1"/> 
+            <xsd:element name="Originator" type="wsa:EndpointReferenceType" minOccurs="0" maxOccurs="1"/> 
+            <xsd:element name="ErrorCode" minOccurs="0" maxOccurs="1"> 
+                <xsd:complexType> 
+                    <xsd:complexContent mixed="true"> 
+                        <xsd:extension base="xsd:anyType"> 
+                            <xsd:attribute name="dialect" type="xsd:anyURI" use="required"/> 
+                        </xsd:extension> 
+                    </xsd:complexContent> 
+                </xsd:complexType> 
+            </xsd:element> 
+            <xsd:element name="Description" minOccurs="0" maxOccurs="unbounded"> 
+                <xsd:complexType> 
+                    <xsd:simpleContent> 
+                        <xsd:extension base="xsd:string"> 
+                            <xsd:attribute ref="xml:lang"        
+                              use="optional"/> 
+                        </xsd:extension> 
+                    </xsd:simpleContent> 
+                </xsd:complexType> 
+            </xsd:element> 
+            <xsd:element name="FaultCause" type="wsbf:BaseFaultType" minOccurs="0" maxOccurs="unbounded"/> 
+        </xsd:sequence> 
+    </xsd:complexType> 
+</xsd:schema> 

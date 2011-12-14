@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="UTF-8"?> 
+<wsdl:definitions name="BaseFaults" 
+  xmlns="http://schemas.xmlsoap.org/wsdl/"  
+  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"  
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xmlns:wsbf="http://www.ibm.com/xmlns/stdwip/web-services/WS-BaseFaults"
+  targetNamespace="http://www.ibm.com/xmlns/stdwip/web-services/WS-BaseFaults"> 
+        <!-- ======== Types Definitions ======= -->  
+  <wsdl:types> 
+     <xsd:schema > 
+         <xsd:import  
+           namespace=            "http://www.ibm.com/xmlns/stdwip/web-services/WS-BaseFaults"  
+           schemaLocation=     "file:///home/mcrasso/Desktop/teaching/courses/COS/cos2011/final/mgarriga/EasyWSDL-sample1/etc/WS-BaseFaults.xsd"/> 
+     </xsd:schema> 
+  </wsdl:types>   
+  <wsdl:message name="BaseFaultMessage" > 
+    <wsdl:part name="Fault" element="wsbf:BaseFault" /> 
+  </wsdl:message>  
+</wsdl:definitions> 

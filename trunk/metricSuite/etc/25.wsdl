@@ -1,0 +1,481 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.mathertel.de/CalcFactors/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://www.mathertel.de/CalcFactors/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">A WebService for the calculation of prime factors.</wsdl:documentation>
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.mathertel.de/CalcFactors/">
+      <s:element name="HelloWorld">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="who" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="HelloWorldResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="HelloWorldResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SlowWorld">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="duration" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SlowWorldResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SlowWorldResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddInteger">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="number1" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="number2" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddIntegerResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AddIntegerResult" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddDouble">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="number1" type="s:double" />
+            <s:element minOccurs="1" maxOccurs="1" name="number2" type="s:double" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddDoubleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AddDoubleResult" type="s:double" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CalcPrimeFactors">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="inputText" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CalcPrimeFactorsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CalcPrimeFactorsResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CalcPrimeFactors2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="number" type="s:unsignedLong" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CalcPrimeFactors2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CalcPrimeFactors2Result" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SlowCalcPrimeFactors">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="inputText" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SlowCalcPrimeFactorsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SlowCalcPrimeFactorsResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="string" nillable="true" type="s:string" />
+      <s:element name="long" type="s:long" />
+      <s:element name="double" type="s:double" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="HelloWorldSoapIn">
+    <wsdl:part name="parameters" element="tns:HelloWorld" />
+  </wsdl:message>
+  <wsdl:message name="HelloWorldSoapOut">
+    <wsdl:part name="parameters" element="tns:HelloWorldResponse" />
+  </wsdl:message>
+  <wsdl:message name="SlowWorldSoapIn">
+    <wsdl:part name="parameters" element="tns:SlowWorld" />
+  </wsdl:message>
+  <wsdl:message name="SlowWorldSoapOut">
+    <wsdl:part name="parameters" element="tns:SlowWorldResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddIntegerSoapIn">
+    <wsdl:part name="parameters" element="tns:AddInteger" />
+  </wsdl:message>
+  <wsdl:message name="AddIntegerSoapOut">
+    <wsdl:part name="parameters" element="tns:AddIntegerResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddDoubleSoapIn">
+    <wsdl:part name="parameters" element="tns:AddDouble" />
+  </wsdl:message>
+  <wsdl:message name="AddDoubleSoapOut">
+    <wsdl:part name="parameters" element="tns:AddDoubleResponse" />
+  </wsdl:message>
+  <wsdl:message name="CalcPrimeFactorsSoapIn">
+    <wsdl:part name="parameters" element="tns:CalcPrimeFactors" />
+  </wsdl:message>
+  <wsdl:message name="CalcPrimeFactorsSoapOut">
+    <wsdl:part name="parameters" element="tns:CalcPrimeFactorsResponse" />
+  </wsdl:message>
+  <wsdl:message name="CalcPrimeFactors2SoapIn">
+    <wsdl:part name="parameters" element="tns:CalcPrimeFactors2" />
+  </wsdl:message>
+  <wsdl:message name="CalcPrimeFactors2SoapOut">
+    <wsdl:part name="parameters" element="tns:CalcPrimeFactors2Response" />
+  </wsdl:message>
+  <wsdl:message name="SlowCalcPrimeFactorsSoapIn">
+    <wsdl:part name="parameters" element="tns:SlowCalcPrimeFactors" />
+  </wsdl:message>
+  <wsdl:message name="SlowCalcPrimeFactorsSoapOut">
+    <wsdl:part name="parameters" element="tns:SlowCalcPrimeFactorsResponse" />
+  </wsdl:message>
+  <wsdl:message name="HelloWorldHttpGetIn">
+    <wsdl:part name="who" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="HelloWorldHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="SlowWorldHttpGetIn">
+    <wsdl:part name="duration" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SlowWorldHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="AddIntegerHttpGetIn">
+    <wsdl:part name="number1" type="s:string" />
+    <wsdl:part name="number2" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AddIntegerHttpGetOut">
+    <wsdl:part name="Body" element="tns:long" />
+  </wsdl:message>
+  <wsdl:message name="AddDoubleHttpGetIn">
+    <wsdl:part name="number1" type="s:string" />
+    <wsdl:part name="number2" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AddDoubleHttpGetOut">
+    <wsdl:part name="Body" element="tns:double" />
+  </wsdl:message>
+  <wsdl:message name="CalcPrimeFactorsHttpGetIn">
+    <wsdl:part name="inputText" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CalcPrimeFactorsHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="CalcPrimeFactors2HttpGetIn">
+    <wsdl:part name="number" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CalcPrimeFactors2HttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="SlowCalcPrimeFactorsHttpGetIn">
+    <wsdl:part name="inputText" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SlowCalcPrimeFactorsHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:portType name="CalcServiceSoap">
+    <wsdl:operation name="HelloWorld">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Say hello to the world.</wsdl:documentation>
+      <wsdl:input message="tns:HelloWorldSoapIn" />
+      <wsdl:output message="tns:HelloWorldSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SlowWorld">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Wast a lot of time, but no cpu.</wsdl:documentation>
+      <wsdl:input message="tns:SlowWorldSoapIn" />
+      <wsdl:output message="tns:SlowWorldSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddInteger">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Add 2 numbers.</wsdl:documentation>
+      <wsdl:input message="tns:AddIntegerSoapIn" />
+      <wsdl:output message="tns:AddIntegerSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddDouble">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Add 2 doubles.</wsdl:documentation>
+      <wsdl:input message="tns:AddDoubleSoapIn" />
+      <wsdl:output message="tns:AddDoubleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CalcPrimeFactors">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Calculate all prime factors of a given number.</wsdl:documentation>
+      <wsdl:input message="tns:CalcPrimeFactorsSoapIn" />
+      <wsdl:output message="tns:CalcPrimeFactorsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CalcPrimeFactors2">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Calculate all prime factors of a given number.</wsdl:documentation>
+      <wsdl:input message="tns:CalcPrimeFactors2SoapIn" />
+      <wsdl:output message="tns:CalcPrimeFactors2SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SlowCalcPrimeFactors">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Calculate all prime factors of a given number with a slow response. &lt;br /&gt;&lt;b&gt;Use this method if your CPU is too fast.&lt;/b&gt;</wsdl:documentation>
+      <wsdl:input message="tns:SlowCalcPrimeFactorsSoapIn" />
+      <wsdl:output message="tns:SlowCalcPrimeFactorsSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="CalcServiceHttpGet">
+    <wsdl:operation name="HelloWorld">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Say hello to the world.</wsdl:documentation>
+      <wsdl:input message="tns:HelloWorldHttpGetIn" />
+      <wsdl:output message="tns:HelloWorldHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SlowWorld">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Wast a lot of time, but no cpu.</wsdl:documentation>
+      <wsdl:input message="tns:SlowWorldHttpGetIn" />
+      <wsdl:output message="tns:SlowWorldHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddInteger">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Add 2 numbers.</wsdl:documentation>
+      <wsdl:input message="tns:AddIntegerHttpGetIn" />
+      <wsdl:output message="tns:AddIntegerHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddDouble">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Add 2 doubles.</wsdl:documentation>
+      <wsdl:input message="tns:AddDoubleHttpGetIn" />
+      <wsdl:output message="tns:AddDoubleHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CalcPrimeFactors">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Calculate all prime factors of a given number.</wsdl:documentation>
+      <wsdl:input message="tns:CalcPrimeFactorsHttpGetIn" />
+      <wsdl:output message="tns:CalcPrimeFactorsHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CalcPrimeFactors2">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Calculate all prime factors of a given number.</wsdl:documentation>
+      <wsdl:input message="tns:CalcPrimeFactors2HttpGetIn" />
+      <wsdl:output message="tns:CalcPrimeFactors2HttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SlowCalcPrimeFactors">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Calculate all prime factors of a given number with a slow response. &lt;br /&gt;&lt;b&gt;Use this method if your CPU is too fast.&lt;/b&gt;</wsdl:documentation>
+      <wsdl:input message="tns:SlowCalcPrimeFactorsHttpGetIn" />
+      <wsdl:output message="tns:SlowCalcPrimeFactorsHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CalcServiceSoap" type="tns:CalcServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="HelloWorld">
+      <soap:operation soapAction="http://www.mathertel.de/CalcFactors/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SlowWorld">
+      <soap:operation soapAction="http://www.mathertel.de/CalcFactors/SlowWorld" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddInteger">
+      <soap:operation soapAction="http://www.mathertel.de/CalcFactors/AddInteger" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddDouble">
+      <soap:operation soapAction="http://www.mathertel.de/CalcFactors/AddDouble" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CalcPrimeFactors">
+      <soap:operation soapAction="http://www.mathertel.de/CalcFactors/CalcPrimeFactors" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CalcPrimeFactors2">
+      <soap:operation soapAction="http://www.mathertel.de/CalcFactors/CalcPrimeFactors2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SlowCalcPrimeFactors">
+      <soap:operation soapAction="http://www.mathertel.de/CalcFactors/SlowCalcPrimeFactors" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="CalcServiceSoap12" type="tns:CalcServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="HelloWorld">
+      <soap12:operation soapAction="http://www.mathertel.de/CalcFactors/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SlowWorld">
+      <soap12:operation soapAction="http://www.mathertel.de/CalcFactors/SlowWorld" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddInteger">
+      <soap12:operation soapAction="http://www.mathertel.de/CalcFactors/AddInteger" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddDouble">
+      <soap12:operation soapAction="http://www.mathertel.de/CalcFactors/AddDouble" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CalcPrimeFactors">
+      <soap12:operation soapAction="http://www.mathertel.de/CalcFactors/CalcPrimeFactors" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CalcPrimeFactors2">
+      <soap12:operation soapAction="http://www.mathertel.de/CalcFactors/CalcPrimeFactors2" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SlowCalcPrimeFactors">
+      <soap12:operation soapAction="http://www.mathertel.de/CalcFactors/SlowCalcPrimeFactors" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="CalcServiceHttpGet" type="tns:CalcServiceHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="HelloWorld">
+      <http:operation location="/HelloWorld" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SlowWorld">
+      <http:operation location="/SlowWorld" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddInteger">
+      <http:operation location="/AddInteger" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddDouble">
+      <http:operation location="/AddDouble" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CalcPrimeFactors">
+      <http:operation location="/CalcPrimeFactors" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CalcPrimeFactors2">
+      <http:operation location="/CalcPrimeFactors2" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SlowCalcPrimeFactors">
+      <http:operation location="/SlowCalcPrimeFactors" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CalcService">
+    <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">A WebService for the calculation of prime factors.</wsdl:documentation>
+    <wsdl:port name="CalcServiceSoap" binding="tns:CalcServiceSoap">
+      <soap:address location="http://www.mathertel.de/AJAXEngine/S02_AJAXCoreSamples/CalcService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="CalcServiceSoap12" binding="tns:CalcServiceSoap12">
+      <soap12:address location="http://www.mathertel.de/AJAXEngine/S02_AJAXCoreSamples/CalcService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="CalcServiceHttpGet" binding="tns:CalcServiceHttpGet">
+      <http:address location="http://www.mathertel.de/AJAXEngine/S02_AJAXCoreSamples/CalcService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

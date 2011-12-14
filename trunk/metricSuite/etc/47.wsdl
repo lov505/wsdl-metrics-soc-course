@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://exanetworks.com/eXaPhoto/CollectionServices" xmlns:s1="http://microsoft.com/wsdl/types/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://exanetworks.com/eXaPhoto/CollectionServices" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">eXaPhoto Command and Upload channel for remote Peer-to-Peer Agents.</wsdl:documentation>
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://exanetworks.com/eXaPhoto/CollectionServices">
+      <s:import namespace="http://microsoft.com/wsdl/types/" />
+      <s:element name="RegisterComputer">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="licenseKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="computerIdentifier" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="computerName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="computerDescription" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RegisterComputerResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="UnregisterComputer">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="licenseKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="computerIdentifier" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UnregisterComputerResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="CheckComputer">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="licenseKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="computerIdentifier" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckComputerResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CheckComputerResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckAccount">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="licenseKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="accountIdentifier" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckAccountResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CheckAccountResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Visit">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="licenseKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="computerIdentifier" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="accountIdentifiersHashes" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="previousCommandBatchesStatuses" type="tns:ArrayOfCommandBatchStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfCommandBatchStatus">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="CommandBatchStatus" nillable="true" type="tns:CommandBatchStatus" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CommandBatchStatus">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="UniqueIdentifier" type="s1:guid" />
+          <s:element minOccurs="0" maxOccurs="1" name="CommandStatus" type="tns:ArrayOfCommandStatus" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfCommandStatus">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="CommandStatus" nillable="true" type="tns:CommandStatus" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CommandStatus">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="UniqueIdentifier" type="s1:guid" />
+          <s:element minOccurs="1" maxOccurs="1" name="CommandExecutionStatus" type="tns:CommandExecutionStatus" />
+          <s:element minOccurs="1" maxOccurs="1" name="ErrorCode" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorDescription" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ReturnParameters" type="tns:ArrayOfReturnParameter" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="CommandExecutionStatus">
+        <s:restriction base="s:string">
+          <s:enumeration value="Succeeded" />
+          <s:enumeration value="Failed" />
+          <s:enumeration value="UnknownCommand" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfReturnParameter">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ReturnParameter" nillable="true" type="tns:ReturnParameter" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ReturnParameter">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Value" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="VisitResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="VisitResult" type="tns:ArrayOfCommandBatch" />
+            <s:element minOccurs="1" maxOccurs="1" name="nextVisitIntervalMilliseconds" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfCommandBatch">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="CommandBatch" nillable="true" type="tns:CommandBatch" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CommandBatch">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Priority" type="tns:CommandBatchPriority" />
+          <s:element minOccurs="1" maxOccurs="1" name="AccountIdentifierIndex" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Moniker" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="FileLastModificationDateUtc" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="FileCreationDateUtc" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="FileSize" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="MediaType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Hash" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="UniqueIdentifier" type="s1:guid" />
+          <s:element minOccurs="1" maxOccurs="1" name="AssetInternalIdentifier" type="s1:guid" />
+          <s:element minOccurs="0" maxOccurs="1" name="Commands" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="CommandBatchPriority">
+        <s:restriction base="s:string">
+          <s:enumeration value="Urgent" />
+          <s:enumeration value="Normal" />
+          <s:enumeration value="Low" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="CreateNotificationGroupInvitation">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="licenseKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="computerIdentifier" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="identity" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="identityInfo" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateNotificationGroupInvitationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateNotificationGroupInvitationResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/wsdl/types/">
+      <s:simpleType name="guid">
+        <s:restriction base="s:string">
+          <s:pattern value="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}" />
+        </s:restriction>
+      </s:simpleType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="RegisterComputerSoapIn">
+    <wsdl:part name="parameters" element="tns:RegisterComputer" />
+  </wsdl:message>
+  <wsdl:message name="RegisterComputerSoapOut">
+    <wsdl:part name="parameters" element="tns:RegisterComputerResponse" />
+  </wsdl:message>
+  <wsdl:message name="UnregisterComputerSoapIn">
+    <wsdl:part name="parameters" element="tns:UnregisterComputer" />
+  </wsdl:message>
+  <wsdl:message name="UnregisterComputerSoapOut">
+    <wsdl:part name="parameters" element="tns:UnregisterComputerResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckComputerSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckComputer" />
+  </wsdl:message>
+  <wsdl:message name="CheckComputerSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckComputerResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckAccountSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckAccount" />
+  </wsdl:message>
+  <wsdl:message name="CheckAccountSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckAccountResponse" />
+  </wsdl:message>
+  <wsdl:message name="VisitSoapIn">
+    <wsdl:part name="parameters" element="tns:Visit" />
+  </wsdl:message>
+  <wsdl:message name="VisitSoapOut">
+    <wsdl:part name="parameters" element="tns:VisitResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateNotificationGroupInvitationSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateNotificationGroupInvitation" />
+  </wsdl:message>
+  <wsdl:message name="CreateNotificationGroupInvitationSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateNotificationGroupInvitationResponse" />
+  </wsdl:message>
+  <wsdl:portType name="CollectionServicesSoap">
+    <wsdl:operation name="RegisterComputer">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Registers a computer to the specified account.</wsdl:documentation>
+      <wsdl:input message="tns:RegisterComputerSoapIn" />
+      <wsdl:output message="tns:RegisterComputerSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UnregisterComputer">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Unregisters a computer.</wsdl:documentation>
+      <wsdl:input message="tns:UnregisterComputerSoapIn" />
+      <wsdl:output message="tns:UnregisterComputerSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckComputer">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Checks computer existence.</wsdl:documentation>
+      <wsdl:input message="tns:CheckComputerSoapIn" />
+      <wsdl:output message="tns:CheckComputerSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckAccount">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Checks account existence.</wsdl:documentation>
+      <wsdl:input message="tns:CheckAccountSoapIn" />
+      <wsdl:output message="tns:CheckAccountSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Visit">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Called by remote collectors at regular intervals to retrieve pending commands.</wsdl:documentation>
+      <wsdl:input message="tns:VisitSoapIn" />
+      <wsdl:output message="tns:VisitSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateNotificationGroupInvitation">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Creates an XML string that can be used by the calling peer to join the eXaPhoto peer-to-peer notification group.</wsdl:documentation>
+      <wsdl:input message="tns:CreateNotificationGroupInvitationSoapIn" />
+      <wsdl:output message="tns:CreateNotificationGroupInvitationSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CollectionServicesSoap" type="tns:CollectionServicesSoap">
+    <wsdl:documentation>
+      <wsi:Claim conformsTo="http://ws-i.org/profiles/basic/1.1" xmlns:wsi="http://ws-i.org/schemas/conformanceClaim/" />
+    </wsdl:documentation>
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="RegisterComputer">
+      <soap:operation soapAction="http://exanetworks.com/eXaPhoto/CollectionServices/RegisterComputer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UnregisterComputer">
+      <soap:operation soapAction="http://exanetworks.com/eXaPhoto/CollectionServices/UnregisterComputer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckComputer">
+      <soap:operation soapAction="http://exanetworks.com/eXaPhoto/CollectionServices/CheckComputer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckAccount">
+      <soap:operation soapAction="http://exanetworks.com/eXaPhoto/CollectionServices/CheckAccount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Visit">
+      <soap:operation soapAction="http://exanetworks.com/eXaPhoto/CollectionServices/Visit" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateNotificationGroupInvitation">
+      <soap:operation soapAction="http://exanetworks.com/eXaPhoto/CollectionServices/CreateNotificationGroupInvitation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="CollectionServicesSoap12" type="tns:CollectionServicesSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="RegisterComputer">
+      <soap12:operation soapAction="http://exanetworks.com/eXaPhoto/CollectionServices/RegisterComputer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UnregisterComputer">
+      <soap12:operation soapAction="http://exanetworks.com/eXaPhoto/CollectionServices/UnregisterComputer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckComputer">
+      <soap12:operation soapAction="http://exanetworks.com/eXaPhoto/CollectionServices/CheckComputer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckAccount">
+      <soap12:operation soapAction="http://exanetworks.com/eXaPhoto/CollectionServices/CheckAccount" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Visit">
+      <soap12:operation soapAction="http://exanetworks.com/eXaPhoto/CollectionServices/Visit" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateNotificationGroupInvitation">
+      <soap12:operation soapAction="http://exanetworks.com/eXaPhoto/CollectionServices/CreateNotificationGroupInvitation" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CollectionServices">
+    <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">eXaPhoto Command and Upload channel for remote Peer-to-Peer Agents.</wsdl:documentation>
+    <wsdl:port name="CollectionServicesSoap" binding="tns:CollectionServicesSoap">
+      <soap:address location="http://svc.exaphoto.com/eXaPhoto/CollectionServices.asmx" />
+    </wsdl:port>
+    <wsdl:port name="CollectionServicesSoap12" binding="tns:CollectionServicesSoap12">
+      <soap12:address location="http://svc.exaphoto.com/eXaPhoto/CollectionServices.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

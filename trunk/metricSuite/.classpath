@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="lib/activation-1.1.jar"/>
+	<classpathentry kind="lib" path="lib/commons-lang-2.4.jar"/>
+	<classpathentry kind="lib" path="lib/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="lib/easywsdl-schema-2.1.jar"/>
+	<classpathentry kind="lib" path="lib/easywsdl-wsdl-2.1.jar"/>
+	<classpathentry kind="lib" path="lib/jaxb-api-2.1.jar"/>
+	<classpathentry kind="lib" path="lib/jaxb-impl-2.1.10.jar"/>
+	<classpathentry kind="lib" path="lib/log4j-1.2.16.jar"/>
+	<classpathentry kind="lib" path="lib/runtime-0.4.1.5.jar"/>
+	<classpathentry kind="lib" path="lib/stax-api-1.0-2.jar"/>
+	<classpathentry kind="lib" path="lib/woden-api-1.0M8.jar"/>
+	<classpathentry kind="lib" path="lib/woden-impl-dom-1.0M8.jar"/>
+	<classpathentry kind="lib" path="lib/xercesImpl.jar"/>
+	<classpathentry kind="lib" path="lib/xml-apis.jar"/>
+	<classpathentry kind="lib" path="lib/XmlSchema-1.4.2.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

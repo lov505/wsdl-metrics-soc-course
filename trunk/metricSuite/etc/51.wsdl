@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://metalmaker.net/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://metalmaker.net/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://metalmaker.net/">
+      <s:element name="SetInstrumentalProbability">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Probability" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetInstrumentalProbabilityResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="SetAlbumTitleAsSongTitleProbability">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Probability" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetAlbumTitleAsSongTitleProbabilityResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="SetTenseAlterationProbability">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Probability" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetTenseAlterationProbabilityResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="SetTense">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Tense" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetTenseResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="SetRequestType">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RequestType" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetRequestTypeResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="SetTitle">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Title" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetTitleResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="SetSongCount">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Count" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetSongCountResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="UseBuiltInData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Use" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UseBuiltInDataResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="AddUserData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DataXml" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddUserDataResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="ClearSettings">
+        <s:complexType />
+      </s:element>
+      <s:element name="ClearSettingsResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="Generate">
+        <s:complexType />
+      </s:element>
+      <s:element name="GenerateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GenerateResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="SetInstrumentalProbabilitySoapIn">
+    <wsdl:part name="parameters" element="tns:SetInstrumentalProbability" />
+  </wsdl:message>
+  <wsdl:message name="SetInstrumentalProbabilitySoapOut">
+    <wsdl:part name="parameters" element="tns:SetInstrumentalProbabilityResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetAlbumTitleAsSongTitleProbabilitySoapIn">
+    <wsdl:part name="parameters" element="tns:SetAlbumTitleAsSongTitleProbability" />
+  </wsdl:message>
+  <wsdl:message name="SetAlbumTitleAsSongTitleProbabilitySoapOut">
+    <wsdl:part name="parameters" element="tns:SetAlbumTitleAsSongTitleProbabilityResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetTenseAlterationProbabilitySoapIn">
+    <wsdl:part name="parameters" element="tns:SetTenseAlterationProbability" />
+  </wsdl:message>
+  <wsdl:message name="SetTenseAlterationProbabilitySoapOut">
+    <wsdl:part name="parameters" element="tns:SetTenseAlterationProbabilityResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetTenseSoapIn">
+    <wsdl:part name="parameters" element="tns:SetTense" />
+  </wsdl:message>
+  <wsdl:message name="SetTenseSoapOut">
+    <wsdl:part name="parameters" element="tns:SetTenseResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetRequestTypeSoapIn">
+    <wsdl:part name="parameters" element="tns:SetRequestType" />
+  </wsdl:message>
+  <wsdl:message name="SetRequestTypeSoapOut">
+    <wsdl:part name="parameters" element="tns:SetRequestTypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetTitleSoapIn">
+    <wsdl:part name="parameters" element="tns:SetTitle" />
+  </wsdl:message>
+  <wsdl:message name="SetTitleSoapOut">
+    <wsdl:part name="parameters" element="tns:SetTitleResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetSongCountSoapIn">
+    <wsdl:part name="parameters" element="tns:SetSongCount" />
+  </wsdl:message>
+  <wsdl:message name="SetSongCountSoapOut">
+    <wsdl:part name="parameters" element="tns:SetSongCountResponse" />
+  </wsdl:message>
+  <wsdl:message name="UseBuiltInDataSoapIn">
+    <wsdl:part name="parameters" element="tns:UseBuiltInData" />
+  </wsdl:message>
+  <wsdl:message name="UseBuiltInDataSoapOut">
+    <wsdl:part name="parameters" element="tns:UseBuiltInDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddUserDataSoapIn">
+    <wsdl:part name="parameters" element="tns:AddUserData" />
+  </wsdl:message>
+  <wsdl:message name="AddUserDataSoapOut">
+    <wsdl:part name="parameters" element="tns:AddUserDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="ClearSettingsSoapIn">
+    <wsdl:part name="parameters" element="tns:ClearSettings" />
+  </wsdl:message>
+  <wsdl:message name="ClearSettingsSoapOut">
+    <wsdl:part name="parameters" element="tns:ClearSettingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GenerateSoapIn">
+    <wsdl:part name="parameters" element="tns:Generate" />
+  </wsdl:message>
+  <wsdl:message name="GenerateSoapOut">
+    <wsdl:part name="parameters" element="tns:GenerateResponse" />
+  </wsdl:message>
+  <wsdl:portType name="WSMetalMakerSoap">
+    <wsdl:operation name="SetInstrumentalProbability">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Sets the instrumental probability. Value must be between 0 and 100.</wsdl:documentation>
+      <wsdl:input message="tns:SetInstrumentalProbabilitySoapIn" />
+      <wsdl:output message="tns:SetInstrumentalProbabilitySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetAlbumTitleAsSongTitleProbability">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Sets the probability for album title occurring also as song title. This can happen only once in an album. Value must be between 0 and 100. This method has no effect if the request type is set to Song.</wsdl:documentation>
+      <wsdl:input message="tns:SetAlbumTitleAsSongTitleProbabilitySoapIn" />
+      <wsdl:output message="tns:SetAlbumTitleAsSongTitleProbabilitySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetTenseAlterationProbability">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Sets the probability for tense alteration between verses. Value must be between 0 and 100. This method has no effect if the tense is set to something else than Undefined.</wsdl:documentation>
+      <wsdl:input message="tns:SetTenseAlterationProbabilitySoapIn" />
+      <wsdl:output message="tns:SetTenseAlterationProbabilitySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetTense">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Sets the tense to be used in album or song generation.</wsdl:documentation>
+      <wsdl:input message="tns:SetTenseSoapIn" />
+      <wsdl:output message="tns:SetTenseSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetRequestType">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Sets the request type, which determines whether to generate an album or a song.</wsdl:documentation>
+      <wsdl:input message="tns:SetRequestTypeSoapIn" />
+      <wsdl:output message="tns:SetRequestTypeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetTitle">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Sets the title to be used in album or song generation.</wsdl:documentation>
+      <wsdl:input message="tns:SetTitleSoapIn" />
+      <wsdl:output message="tns:SetTitleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetSongCount">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Sets the song count title to be used in album generation. This method has no effect if the request type is set to Song. Value must be between 0 and 100. If the value is set to zero, a random amount of songs will be created.</wsdl:documentation>
+      <wsdl:input message="tns:SetSongCountSoapIn" />
+      <wsdl:output message="tns:SetSongCountSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UseBuiltInData">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Enables or disables built in vocabulary and structure data. Default is true.</wsdl:documentation>
+      <wsdl:input message="tns:UseBuiltInDataSoapIn" />
+      <wsdl:output message="tns:UseBuiltInDataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddUserData">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Feeds Metal Maker new xml data. The data must comply to Metal Maker XML Data 3.0 specification available at &lt;a target=_blank href="http://metalmaker.net"&gt;metalmaker.net&lt;/a&gt;.</wsdl:documentation>
+      <wsdl:input message="tns:AddUserDataSoapIn" />
+      <wsdl:output message="tns:AddUserDataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ClearSettings">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Clears all settings: tense, request type, title and user-provided vocabulary.</wsdl:documentation>
+      <wsdl:input message="tns:ClearSettingsSoapIn" />
+      <wsdl:output message="tns:ClearSettingsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Generate">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Generates an album or song depending on the parameters given. The default is Album.</wsdl:documentation>
+      <wsdl:input message="tns:GenerateSoapIn" />
+      <wsdl:output message="tns:GenerateSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WSMetalMakerSoap" type="tns:WSMetalMakerSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="SetInstrumentalProbability">
+      <soap:operation soapAction="http://metalmaker.net/SetInstrumentalProbability" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetAlbumTitleAsSongTitleProbability">
+      <soap:operation soapAction="http://metalmaker.net/SetAlbumTitleAsSongTitleProbability" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetTenseAlterationProbability">
+      <soap:operation soapAction="http://metalmaker.net/SetTenseAlterationProbability" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetTense">
+      <soap:operation soapAction="http://metalmaker.net/SetTense" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetRequestType">
+      <soap:operation soapAction="http://metalmaker.net/SetRequestType" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetTitle">
+      <soap:operation soapAction="http://metalmaker.net/SetTitle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetSongCount">
+      <soap:operation soapAction="http://metalmaker.net/SetSongCount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UseBuiltInData">
+      <soap:operation soapAction="http://metalmaker.net/UseBuiltInData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddUserData">
+      <soap:operation soapAction="http://metalmaker.net/AddUserData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ClearSettings">
+      <soap:operation soapAction="http://metalmaker.net/ClearSettings" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Generate">
+      <soap:operation soapAction="http://metalmaker.net/Generate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WSMetalMakerSoap12" type="tns:WSMetalMakerSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="SetInstrumentalProbability">
+      <soap12:operation soapAction="http://metalmaker.net/SetInstrumentalProbability" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetAlbumTitleAsSongTitleProbability">
+      <soap12:operation soapAction="http://metalmaker.net/SetAlbumTitleAsSongTitleProbability" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetTenseAlterationProbability">
+      <soap12:operation soapAction="http://metalmaker.net/SetTenseAlterationProbability" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetTense">
+      <soap12:operation soapAction="http://metalmaker.net/SetTense" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetRequestType">
+      <soap12:operation soapAction="http://metalmaker.net/SetRequestType" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetTitle">
+      <soap12:operation soapAction="http://metalmaker.net/SetTitle" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetSongCount">
+      <soap12:operation soapAction="http://metalmaker.net/SetSongCount" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UseBuiltInData">
+      <soap12:operation soapAction="http://metalmaker.net/UseBuiltInData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddUserData">
+      <soap12:operation soapAction="http://metalmaker.net/AddUserData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ClearSettings">
+      <soap12:operation soapAction="http://metalmaker.net/ClearSettings" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Generate">
+      <soap12:operation soapAction="http://metalmaker.net/Generate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WSMetalMaker">
+    <wsdl:port name="WSMetalMakerSoap" binding="tns:WSMetalMakerSoap">
+      <soap:address location="http://metalmaker.net/metalmaker.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WSMetalMakerSoap12" binding="tns:WSMetalMakerSoap12">
+      <soap12:address location="http://metalmaker.net/metalmaker.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
