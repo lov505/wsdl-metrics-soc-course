@@ -15,8 +15,6 @@ import org.ow2.easywsdl.schema.impl.ComplexTypeImpl;
 import org.ow2.easywsdl.schema.impl.ExtensionImpl;
 import org.ow2.easywsdl.schema.impl.SimpleTypeImpl;
 
-import com.sun.xml.bind.v2.schemagen.xmlschema.ComplexContent;
-
 public class MessageComplexityCalculator {
 
 	public Hashtable<QName,Integer> analyzedTypes;			

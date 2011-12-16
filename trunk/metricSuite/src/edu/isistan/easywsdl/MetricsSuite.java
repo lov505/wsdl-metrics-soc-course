@@ -4,9 +4,7 @@ import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.Iterator;
-import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.Vector;
 
 import org.apache.log4j.Logger;
@@ -84,7 +82,7 @@ public class MetricsSuite {
 	 * For DMC see {@link MetricsSuite#getDMC(URL)}
 	 */
 	public double getDMR(URL url) {
-		int Nm = getMessageCount(url);
+		double Nm = getMessageCount(url);
 		return getDMC(url) / Nm;
 	}
 	
@@ -99,7 +97,7 @@ public class MetricsSuite {
 	 */
 	public int getDMC(URL url) {
 		List<Pair> pairs = getMessagePairs(url);		
-		Set<Pair> noDups = new LinkedHashSet<Pair>(pairs);
+		List<Pair> noDups = removeDuplicatedMessages(pairs);		
 		Logger.getLogger(MetricsSuite.class.getName()).debug("Pares [C(M),Nargs] distintos: " + noDups.size());		
 		return noDups.size();
 	}
@@ -119,7 +117,7 @@ public class MetricsSuite {
 		double ME = 0.0;
 		List<Pair> pairs = getMessagePairs(url);			
 		double[] NOMs = getMessageOccurrences(pairs);
-		int Nm = getMessageCount(url);
+		double Nm = getMessageCount(url);
 		for (int i = 0; i < NOMs.length; i++) {
 			Logger.getLogger(MetricsSuite.class.getName()).debug("Par: "+ i + " NOM: " + NOMs[i] + " Nm:" + Nm + " PM:" + NOMs[i]/Nm);
 			double log2 = Math.log(NOMs[i]/Nm)/Math.log(2);
@@ -138,7 +136,7 @@ public class MetricsSuite {
 		double MRS = 0.0;
 		List<Pair> pairs = getMessagePairs(url);
 		double[] NOMs = getMessageOccurrences(pairs);
-		int Nm = getMessageCount(url);
+		double Nm = getMessageCount(url);
 		for (int i = 0; i < NOMs.length; i++) {
 			Logger.getLogger(MetricsSuite.class.getName()).debug("Par: "+ i + " NOM: " + NOMs[i] + " Nm:" + Nm + " PM:" + NOMs[i]/Nm);
 			double square = Math.pow(NOMs[i],2);
@@ -148,9 +146,9 @@ public class MetricsSuite {
 	}
 	
 	
-	protected int getMessageCount(URL url) {
+	protected double getMessageCount(URL url) {
 		Description desc = read(url);
-		int Nm = 0;
+		double Nm = 0;
 		Iterator<InterfaceType> iter = desc.getInterfaces().iterator();
 		while (iter.hasNext()) {			
 			InterfaceType portType = iter.next();
@@ -208,8 +206,19 @@ public class MetricsSuite {
 		return pairs;
 	}	
 	
+	protected List<Pair> removeDuplicatedMessages(List<Pair> pairs) {
+		List<Pair> noDups = new Vector<Pair>();
+		Iterator<Pair> it = pairs.iterator();
+		while (it.hasNext()) {
+			Pair p = (Pair) it.next();
+			if (!noDups.contains(p))
+				noDups.add(p);			
+		}
+		return noDups;
+	}
+	
 	protected double[] getMessageOccurrences(List<Pair> pairs) {
-		Set<Pair> noDups = new LinkedHashSet<Pair>(pairs);	
+		List<Pair> noDups = removeDuplicatedMessages(pairs);	
 		double[] NOMs = new double[noDups.size()];				
 		int i=0;
 		Iterator<Pair> iNoDups = noDups.iterator();
@@ -259,8 +268,8 @@ public class MetricsSuite {
 		
 		@Override
 		public boolean equals(Object obj) {
-			Pair p = (Pair) obj;	
-			return this.CM == p.getCM() && this.Nargs == p.getNargs();
+			Pair p = (Pair) obj;			
+			return (this.CM == p.getCM() && this.Nargs == p.getNargs());
 		}
 		
 		@Override
