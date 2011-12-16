@@ -375,14 +375,15 @@ public class MessageComplexityCalculator {
 		if (t instanceof ComplexTypeImpl) {		
 			ComplexTypeImpl c = (ComplexTypeImpl) t;
 			int Nargs = 0;
-			// TO DO: Revisar si hace falta contemplar otros casos 
-			List<Element> elements = c.getSequence().getElements();
-			for (Iterator iterator = elements.iterator(); iterator.hasNext();) {
-				Nargs += countArgumentsFor( ( Element) iterator.next() );				
-			}
+			// TO DO: Revisar si hace falta contemplar otros casos eje. restrictions
+			if (c.hasSequence()) {
+				List<Element> elements = c.getSequence().getElements();
+				for (Iterator iterator = elements.iterator(); iterator.hasNext();) {
+					Nargs += countArgumentsFor( ( Element) iterator.next() );				
+				}
+			}			
 			return Nargs;
-		} else {
-			// Casos: simple,  
+		} else {			  
 			return 1;			
 		}
 	}	

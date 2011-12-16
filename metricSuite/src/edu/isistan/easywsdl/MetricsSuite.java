@@ -40,7 +40,19 @@ public class MetricsSuite {
 			return null;
 		} 
 	}
-	
+
+
+	protected List<InterfaceType> getInterfaces(Description desc) {
+		List<InterfaceType> r = new Vector<InterfaceType>(3);
+		Iterator<InterfaceType> iter = desc.getInterfaces().iterator();
+		while (iter.hasNext()) {			
+			InterfaceType portType = iter.next();				
+			if (!portType.getQName().getLocalPart().contains("Http"))
+				r.add(portType);
+		}
+		return r;
+	}
+
 	/**
 	 * @param url Pointer to WSDL document
 	 * @return The Data Weight (DW) of a WSDL (sec. 4.1 of 10.1049/iet-sen.2010.0089)
@@ -51,13 +63,13 @@ public class MetricsSuite {
 		int DW = 0;
 		MessageComplexityCalculator c = new MessageComplexityCalculator();
 		Description desc = read(url);		
-		Iterator<InterfaceType> iter = desc.getInterfaces().iterator();
+		Iterator<InterfaceType> iter = getInterfaces(desc).iterator();
 		while (iter.hasNext()) {			
-			InterfaceType portType = iter.next();				
+			InterfaceType portType = iter.next();
 			Iterator<Operation> opers = portType.getOperations().iterator();
 			while (opers.hasNext()) {
 				Operation op = (Operation) opers.next();
-				Logger.getLogger(MetricsSuite.class.getName()).debug("Analizando operacion: " + op.getQName().getLocalPart());
+				Logger.getLogger(MetricsSuite.class.getName()).debug("Analizando DW de operación: " + portType.getQName().getLocalPart() + "#" + op.getQName().getLocalPart());
 				Iterator<Part> parts = op.getInput().getParts().iterator();
 				while (parts.hasNext()) {					
 					Part part = (Part) parts.next();					
@@ -68,11 +80,11 @@ public class MetricsSuite {
 					Part part = (Part) parts.next();
 					DW += c.calculateFor(part.getElement());
 				}
-			}
+			}			
 		}
 		return DW;
 	}
-	
+
 	/**
 	 * @param url Pointer to WSDL document
 	 * @return The Distinct Message Ratio (DMR) of a WSDL (sec. 4.2 of 10.1049/iet-sen.2010.0089)
@@ -85,7 +97,7 @@ public class MetricsSuite {
 		double Nm = getMessageCount(url);
 		return getDMC(url) / Nm;
 	}
-	
+
 	/**
 	 * @param  url Pointer to WSDL document 
 	 * @return The Distinct Message Count (DMC) of a WSDL (sec. 4.2 of 10.1049/iet-sen.2010.0089)
@@ -101,16 +113,16 @@ public class MetricsSuite {
 		Logger.getLogger(MetricsSuite.class.getName()).debug("Pares [C(M),Nargs] distintos: " + noDups.size());		
 		return noDups.size();
 	}
-	
+
 	/**
 	 * @param  url Pointer to WSDL document 
 	 * @return The ME of a WSDL document (sec. 4.3 of 10.1049/iet-sen.2010.0089)
 	 * The ME metric is intended to measure the complexity caused by 
 	 * occurrences of similar-structured messages.
- 	 * This metric multiplies the probability of a message represented by [C(M ),arg] 
- 	 * by its log_2. The probability of a pair [C(M ),arg] is its occurrences divided the total
- 	 * number of messages.
- 	 *  
+	 * This metric multiplies the probability of a message represented by [C(M ),arg] 
+	 * by its log_2. The probability of a pair [C(M ),arg] is its occurrences divided the total
+	 * number of messages.
+	 *  
 	 * 
 	 */
 	public double getME(URL url) {
@@ -125,7 +137,7 @@ public class MetricsSuite {
 		}
 		return  (-1)*ME;
 	}	
-	
+
 	/**
 	 * @param  url Pointer to WSDL document 
 	 * @return The MRS of a WSDL document (sec. 4.4 of 10.1049/iet-sen.2010.0089)
@@ -144,18 +156,18 @@ public class MetricsSuite {
 		}
 		return  MRS/Nm;
 	}
-	
-	
+
+
 	protected double getMessageCount(URL url) {
 		Description desc = read(url);
 		double Nm = 0;
-		Iterator<InterfaceType> iter = desc.getInterfaces().iterator();
+		Iterator<InterfaceType> iter = getInterfaces(desc).iterator();
 		while (iter.hasNext()) {			
 			InterfaceType portType = iter.next();
 			Iterator<Operation> opers = portType.getOperations().iterator();
 			while (opers.hasNext()) {
 				Operation op = (Operation) opers.next();
-				Logger.getLogger(MetricsSuite.class.getName()).debug("Analizando operacion: " + op.getQName().getLocalPart());
+				Logger.getLogger(MetricsSuite.class.getName()).debug("Analizando Nm operación: " + portType.getQName().getLocalPart() + "#" + op.getQName().getLocalPart());
 				if (op.getInput()!=null) {
 					Nm++;
 				}
@@ -166,18 +178,18 @@ public class MetricsSuite {
 		}
 		return Nm;
 	}	
-	
+
 	protected List<Pair> getMessagePairs(URL url) {
 		Description desc = read(url);
 		MessageComplexityCalculator c = new MessageComplexityCalculator();
-		Iterator<InterfaceType> iter = desc.getInterfaces().iterator();
+		Iterator<InterfaceType> iter = getInterfaces(desc).iterator();
 		List<Pair> pairs = new Vector<Pair>();
 		while (iter.hasNext()) {			
 			InterfaceType portType = iter.next();
 			Iterator<Operation> opers = portType.getOperations().iterator();
 			while (opers.hasNext()) {
 				Operation op = (Operation) opers.next();
-				Logger.getLogger(MetricsSuite.class.getName()).debug("Analizando operacion: " + op.getQName().getLocalPart());
+				Logger.getLogger(MetricsSuite.class.getName()).debug("Analizando [C(M),Na] operación: " + portType.getQName().getLocalPart() + "#" + op.getQName().getLocalPart());
 				if (op.getInput()!=null) {
 					Iterator<Part> parts = op.getInput().getParts().iterator();
 					int CM = 0;
@@ -200,12 +212,12 @@ public class MetricsSuite {
 					}
 					pairs.add(new Pair(CM, Nargs, op.getOutput().getMessageName().getLocalPart()));
 				}
-			}
+			}			
 		}
 		Logger.getLogger(MetricsSuite.class.getName()).debug("Pares [C(M),Nargs] recolectados: " + pairs);
 		return pairs;
 	}	
-	
+
 	protected List<Pair> removeDuplicatedMessages(List<Pair> pairs) {
 		List<Pair> noDups = new Vector<Pair>();
 		Iterator<Pair> it = pairs.iterator();
@@ -216,7 +228,7 @@ public class MetricsSuite {
 		}
 		return noDups;
 	}
-	
+
 	protected double[] getMessageOccurrences(List<Pair> pairs) {
 		List<Pair> noDups = removeDuplicatedMessages(pairs);	
 		double[] NOMs = new double[noDups.size()];				
@@ -235,15 +247,36 @@ public class MetricsSuite {
 		}
 		return NOMs;
 	}
-	
+
+	/**
+	 * @param url Pointer to WSDL document 
+	 * @return The number of operations of a WSDL document.
+	 */
+	public int getOPS(URL url) {
+		Description desc = read(url);
+		int No = 0;
+		Iterator<InterfaceType> iter = desc.getInterfaces().iterator();
+		while (iter.hasNext()) {			
+			InterfaceType portType = iter.next();
+			Iterator<Operation> opers = portType.getOperations().iterator();
+			while (opers.hasNext()) {
+				No++;
+				opers.next();
+			}
+		}
+		return No;
+	}
+
+
+
 	/**
 	 * Auxiliary class for modeling structured messages represented by
 	 * [C(M),arg] pair reflecting the message’s complexity value
-     * C(M) and total number of arguments arg that the message contains.
-     * 
-     * For C(M) see {@link MessageComplexityCalculator#calculateFor(org.ow2.easywsdl.schema.api.Element)}
-     * For arg see {@link MessageComplexityCalculator#countArgumentsFor(org.ow2.easywsdl.schema.api.Element)}
-     *  
+	 * C(M) and total number of arguments arg that the message contains.
+	 * 
+	 * For C(M) see {@link MessageComplexityCalculator#calculateFor(org.ow2.easywsdl.schema.api.Element)}
+	 * For arg see {@link MessageComplexityCalculator#countArgumentsFor(org.ow2.easywsdl.schema.api.Element)}
+	 *  
 	 * @author mcrasso
 	 *
 	 */
@@ -251,27 +284,27 @@ public class MetricsSuite {
 		int CM;
 		int Nargs;
 		String mName;
-		
+
 		public Pair(int CM, int Nargs, String mName) {
 			this.CM=CM;
 			this.Nargs=Nargs;
 			this.mName = mName;
 		}
-		
+
 		public int getCM() {
 			return CM;
 		}
-		
+
 		public int getNargs() {
 			return Nargs;
 		}
-		
+
 		@Override
 		public boolean equals(Object obj) {
 			Pair p = (Pair) obj;			
 			return (this.CM == p.getCM() && this.Nargs == p.getNargs());
 		}
-		
+
 		@Override
 		public String toString() {
 			return this.mName + "[CM="+this.CM+",Nargs="+this.Nargs+"]";

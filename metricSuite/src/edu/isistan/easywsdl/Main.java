@@ -13,15 +13,20 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String[] args) {	
-		System.out.println("URL,DW,DMC,DMR,ME,MRS");
+		System.out.println("URL,OPS,DW,DMC,DMR,ME,MRS");
 		for (int j = 0; j < args.length; j++) {
 			String descUrl = args[j];
+			if (!descUrl.startsWith("file://")){
+				descUrl = "file://" + descUrl;
+			}
 			URL curr;
 			try {
 				curr = URI.create(descUrl).toURL();			
 				MetricsSuite ms = new MetricsSuite();				
 				StringBuffer sb = new StringBuffer();
 				sb.append(descUrl.split("etc/")[1]);
+				sb.append(",");
+				sb.append( ms.getOPS(curr) );
 				sb.append(",");
 				sb.append( ms.getDW(curr) );
 				sb.append(",");
@@ -33,8 +38,8 @@ public class Main {
 				sb.append(",");
 				sb.append( ms.getME(curr) );				
 				System.out.println(sb.toString());
-			} catch (MalformedURLException e) {
-				Logger.getLogger(MessageComplexityCalculator.class.getName()).error("Malformed: " + descUrl,e);
+			} catch (Exception e) {
+				Logger.getLogger(MessageComplexityCalculator.class.getName()).error(descUrl,e);
 			}
 		}
 	}
