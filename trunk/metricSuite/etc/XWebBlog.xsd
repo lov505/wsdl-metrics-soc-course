@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xsd:schema id="XWebBlog" targetNamespace="urn:ws-xwebservices-com:XWebBlog:Blog:v2:Messages"
+	elementFormDefault="qualified" xmlns="urn:ws-xwebservices-com:XWebBlog:Blog:v2:Messages"
+	xmlns:mstns="urn:ws-xwebservices-com:XWebBlog:Blog:v2:Messages" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:import="urn:ws-xwebservices-com:XWebBlog:Blog:v2:Types">
+	
+	<xsd:import id="Blog" schemaLocation="Blog.xsd" namespace="urn:ws-xwebservices-com:XWebBlog:Blog:v2:Types" />
+	
+	<xsd:element name="LoadEntryRequest">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="Entry_ID" type="xsd:positiveInteger" minOccurs="1" maxOccurs="1" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	
+	<xsd:element name="LoadEntryResponse">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="Entry" type="import:Entry" minOccurs="1" maxOccurs="1" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	
+	<xsd:element name="LoadBlogRequest" />
+	
+	<xsd:element name="LoadBlogResponse">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="Entry" type="import:Entry" minOccurs="0" maxOccurs="unbounded" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	
+	<xsd:element name="LoadBlogPagedRequest">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="Page_Number" type="xsd:positiveInteger" minOccurs="1" maxOccurs="1" />
+				<xsd:element name="Page_Size" type="xsd:positiveInteger" minOccurs="1" maxOccurs="1" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	
+	<xsd:element name="LoadBlogPagedResponse">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="Entry" type="import:Entry" minOccurs="0" maxOccurs="unbounded" />
+			</xsd:sequence>
+			<xsd:attribute name="Total_Record_Count" use="required">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:minInclusive value="0" />
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:attribute>
+		</xsd:complexType>
+	</xsd:element>
+	
+	<xsd:element name="GetNewEntryIDRequest" />
+	
+	<xsd:element name="GetNewEntryIDResponse">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="Entry_ID" type="xsd:positiveInteger" minOccurs="1" maxOccurs="1" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	
+	<xsd:element name="AddEntryRequest">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="Entry" type="import:Entry" minOccurs="1" maxOccurs="1" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	
+	<xsd:element name="AddEntryResponse" />
+	
+	<xsd:element name="UpdateEntryRequest">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="Entry" type="import:Entry" minOccurs="1" maxOccurs="1" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	
+	<xsd:element name="UpdateEntryResponse" />
+	
+	<xsd:element name="DeleteEntryRequest">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="Entry_ID" type="xsd:positiveInteger" minOccurs="1" maxOccurs="1" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	
+	<xsd:element name="DeleteEntryResponse" />
+	
+	
+	<xsd:element name="LoadBlogByDateRangeRequest">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="Date_Start" type="xsd:dateTime" minOccurs="1" maxOccurs="1" />
+				<xsd:element name="Date_End" type="xsd:dateTime" minOccurs="1" maxOccurs="1" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	
+	<xsd:element name="LoadBlogByDateRangeResponse">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="Entry" type="import:Entry" minOccurs="0" maxOccurs="unbounded" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	
+	
+	<xsd:element name="LoadBlogByDateRangePagedRequest">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="Date_Start" type="xsd:dateTime" minOccurs="1" maxOccurs="1" />
+				<xsd:element name="Date_End" type="xsd:dateTime" minOccurs="1" maxOccurs="1" />
+				<xsd:element name="Page_Number" type="xsd:positiveInteger" minOccurs="1" maxOccurs="1" />
+				<xsd:element name="Page_Size" type="xsd:positiveInteger" minOccurs="1" maxOccurs="1" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	
+	<xsd:element name="LoadBlogByDateRangePagedResponse">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="Entry" type="import:Entry" minOccurs="0" maxOccurs="unbounded" />
+			</xsd:sequence>
+			<xsd:attribute name="Total_Record_Count" use="required">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:minInclusive value="0" />
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:attribute>
+		</xsd:complexType>
+	</xsd:element>
+	
+	<xsd:element name="ProcessEntryRequest">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="Entry" type="import:Entry" minOccurs="1" maxOccurs="1" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	
+	<xsd:element name="ProcessEntryResponse" />
+	
+	<xsd:element name="AddReplyRequest">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="Reply" type="import:Entry_Reply" minOccurs="1" maxOccurs="1" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	
+	<xsd:element name="AddReplyResponse" />
+	
+	<xsd:element name="UpdateReplyRequest">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="Reply" type="import:Entry_Reply" minOccurs="1" maxOccurs="1" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	
+	<xsd:element name="UpdateReplyResponse" />
+	
+	<xsd:element name="DeleteReplyRequest">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="Reply_ID" type="xsd:positiveInteger" minOccurs="1" maxOccurs="1" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	
+	<xsd:element name="DeleteReplyResponse" />
+	
+	<xsd:element name="ProcessReplyRequest">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="Reply" type="import:Entry_Reply" minOccurs="1" maxOccurs="1" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	
+	<xsd:element name="ProcessReplyResponse" />
+	
+	<xsd:element name="GetNewReplyIDRequest" />
+	
+	<xsd:element name="GetNewReplyIDResponse">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="Reply_ID" type="xsd:positiveInteger" minOccurs="1" maxOccurs="1" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	
+	<xsd:element name="LoadReplyRequest">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="Reply_ID" type="xsd:positiveInteger" minOccurs="1" maxOccurs="1" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	
+	<xsd:element name="LoadReplyResponse">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="Reply" type="import:Entry_Reply" minOccurs="1" maxOccurs="1" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>

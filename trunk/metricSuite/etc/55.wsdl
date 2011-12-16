@@ -3,7 +3,7 @@
   <documentation>XWebBlog is an XML/SOAP based Web Service which provides integration and management of a Weblog (Blog) to client applications. For complete documentation please visit http://www.xwebservices.com/Web_Services/XWebBlog/.</documentation>
   <types>
     <xsd:schema>
-      <xsd:import schemaLocation="XWebBlog.xsd" namespace="urn:ws-xwebservices-com:XWebBlog:Blog:v2:Messages" />
+      <xsd:import schemaLocation="etc/XWebBlog.xsd" namespace="urn:ws-xwebservices-com:XWebBlog:Blog:v2:Messages" />
     </xsd:schema>
   </types>
   <message name="loadEntryIn">

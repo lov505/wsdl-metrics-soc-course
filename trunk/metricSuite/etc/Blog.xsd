@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xsd:schema id="Blog" targetNamespace="urn:ws-xwebservices-com:XWebBlog:Blog:v2:Types" elementFormDefault="qualified"
+	xmlns="urn:ws-xwebservices-com:XWebBlog:Blog:v2:Types" xmlns:mstns="urn:ws-xwebservices-com:XWebBlog:Blog:v2:Types"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	
+		<xsd:complexType name="Entry">
+			<xsd:all minOccurs="0" maxOccurs="1">
+				<xsd:element name="Title" minOccurs="0" maxOccurs="1">
+					<xsd:simpleType>
+						<xsd:restriction base="xsd:string">
+							<xsd:minLength value="0" />
+							<xsd:maxLength value="255" />
+						</xsd:restriction>
+					</xsd:simpleType>
+				</xsd:element>
+				<xsd:element name="URL" minOccurs="0" maxOccurs="1">
+					<xsd:simpleType>
+						<xsd:restriction base="xsd:string">
+							<xsd:minLength value="0" />
+							<xsd:maxLength value="255" />
+						</xsd:restriction>
+					</xsd:simpleType>
+				</xsd:element>
+				<xsd:element name="Author" minOccurs="0" maxOccurs="1">
+					<xsd:simpleType>
+						<xsd:restriction base="xsd:string">
+							<xsd:minLength value="0" />
+							<xsd:maxLength value="100" />
+						</xsd:restriction>
+					</xsd:simpleType>
+				</xsd:element>
+				<xsd:element name="Body" minOccurs="0" maxOccurs="1">
+					<xsd:simpleType>
+						<xsd:restriction base="xsd:string">
+							<xsd:minLength value="0" />
+							<xsd:maxLength value="5000" />
+						</xsd:restriction>
+					</xsd:simpleType>
+				</xsd:element>
+				<xsd:element name="Replies" minOccurs="0" maxOccurs="1">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="Reply" type="Entry_Reply" minOccurs="0" maxOccurs="unbounded" />
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="Replies_Count" minOccurs="0" maxOccurs="1">
+					<xsd:simpleType>
+						<xsd:restriction base="xsd:positiveInteger" />
+					</xsd:simpleType>
+				</xsd:element>
+			</xsd:all>
+			<xsd:attribute name="Entry_ID" use="required">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:positiveInteger" />
+				</xsd:simpleType>
+			</xsd:attribute>
+			<xsd:attribute name="Date_Created" use="optional">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:dateTime" />
+				</xsd:simpleType>
+			</xsd:attribute>
+		</xsd:complexType>
+		
+		<xsd:complexType name="Entry_Reply">
+			<xsd:all minOccurs="0" maxOccurs="1">
+				<xsd:element name="Entry_ID" minOccurs="1" maxOccurs="1">
+					<xsd:simpleType>
+						<xsd:restriction base="xsd:positiveInteger" />
+					</xsd:simpleType>
+				</xsd:element>
+				<xsd:element name="URL" minOccurs="0" maxOccurs="1">
+					<xsd:simpleType>
+						<xsd:restriction base="xsd:string">
+							<xsd:minLength value="0" />
+							<xsd:maxLength value="255" />
+						</xsd:restriction>
+					</xsd:simpleType>
+				</xsd:element>
+				<xsd:element name="Author" minOccurs="0" maxOccurs="1">
+					<xsd:simpleType>
+						<xsd:restriction base="xsd:string">
+							<xsd:minLength value="0" />
+							<xsd:maxLength value="100" />
+						</xsd:restriction>
+					</xsd:simpleType>
+				</xsd:element>
+				<xsd:element name="Body" minOccurs="0" maxOccurs="1">
+					<xsd:simpleType>
+						<xsd:restriction base="xsd:string">
+							<xsd:minLength value="0" />
+							<xsd:maxLength value="5000" />
+						</xsd:restriction>
+					</xsd:simpleType>
+				</xsd:element>
+			</xsd:all>
+			<xsd:attribute name="Reply_ID" use="required">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:positiveInteger" />
+				</xsd:simpleType>
+			</xsd:attribute>
+			<xsd:attribute name="Date_Created" use="optional">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:dateTime" />
+				</xsd:simpleType>
+			</xsd:attribute>
+		</xsd:complexType>
+
+</xsd:schema>
