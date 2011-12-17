@@ -71,15 +71,19 @@ public class MetricsSuite {
 				Operation op = (Operation) opers.next();
 				Logger.getLogger(MetricsSuite.class.getName()).debug("Analizando DW de operación: " + portType.getQName().getLocalPart() + "#" + op.getQName().getLocalPart());
 				Iterator<Part> parts = op.getInput().getParts().iterator();
+				int prevDW = DW;//Sólo se usa para debugging
 				while (parts.hasNext()) {					
 					Part part = (Part) parts.next();					
 					DW += c.calculateFor(part.getElement());					
 				}
+				Logger.getLogger(MetricsSuite.class.getName()).debug("DW de mensaje: " + op.getInput().getMessageName().getLocalPart() + ": " + (DW-prevDW));
 				parts = op.getOutput().getParts().iterator();
+				prevDW = DW;
 				while (parts.hasNext()) {
 					Part part = (Part) parts.next();
 					DW += c.calculateFor(part.getElement());
 				}
+				Logger.getLogger(MetricsSuite.class.getName()).debug("DW de mensaje: " + op.getOutput().getMessageName().getLocalPart() + ": " + (DW-prevDW));
 			}			
 		}
 		return DW;

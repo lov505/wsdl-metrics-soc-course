@@ -382,6 +382,7 @@ public class MessageComplexityCalculator {
 					Nargs += countArgumentsFor( ( Element) iterator.next() );				
 				}
 			}			
+			Nargs = (Nargs==0) ? 1 : Nargs;
 			return Nargs;
 		} else {			  
 			return 1;			
