@@ -24,7 +24,7 @@ public class Main {
 				curr = URI.create(descUrl).toURL();			
 				MetricsSuite ms = new MetricsSuite();				
 				StringBuffer sb = new StringBuffer();
-				sb.append(descUrl.split("etc/")[1]);
+				sb.append(descUrl);
 				sb.append(",");
 				sb.append( ms.getOPS(curr) );
 				sb.append(",");
