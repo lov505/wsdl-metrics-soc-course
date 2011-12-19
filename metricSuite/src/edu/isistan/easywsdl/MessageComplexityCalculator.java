@@ -9,6 +9,7 @@ import javax.xml.namespace.QName;
 import org.apache.log4j.Logger;
 import org.ow2.easywsdl.schema.api.Attribute;
 import org.ow2.easywsdl.schema.api.Element;
+import org.ow2.easywsdl.schema.api.Enumeration;
 import org.ow2.easywsdl.schema.api.Sequence;
 import org.ow2.easywsdl.schema.api.Type;
 import org.ow2.easywsdl.schema.impl.ComplexTypeImpl;
@@ -18,6 +19,7 @@ import org.ow2.easywsdl.schema.impl.SimpleTypeImpl;
 public class MessageComplexityCalculator {
 
 	public Hashtable<QName,Integer> analyzedTypes;			
+	private boolean flag; 
 
 	public int calculateFor(Element el) {
 		analyzedTypes = new Hashtable<QName,Integer>();
@@ -96,7 +98,15 @@ public class MessageComplexityCalculator {
 		//Chequeamos que el elemento actual no haya sido analizado previamente.
 		if (analyzedTypes.containsKey(tableKey)){
 			//Avisamos y devolvemos el valor analizado previamente.
+			int aux = analyzedTypes.get(tableKey); 
 			Logger.getLogger(MessageComplexityCalculator.class.getName()).debug("Element already analyzed: " + tableKey);
+			Logger.getLogger(MessageComplexityCalculator.class.getName()).debug("Adds: " + aux);
+			if (aux != 1){
+				flag = true;
+			}
+			else {
+				flag = false;
+			}
 			return analyzedTypes.get(tableKey);
 		} 
 		
@@ -120,15 +130,18 @@ public class MessageComplexityCalculator {
 			//ws = r si el tipo simple esta definido por restriccion					
 			int r = 0;									
 			try {
-				r = simple.getModel().getRestriction().getFacets().size();									
+				r = simple.getRestriction().getEnumerations().size();									
 			} catch (Exception noRestriction) {
 
 			}
-
+			
 			if (r != 0) {
+
 				Logger.getLogger(MessageComplexityCalculator.class.getName()).debug("\t Restriction: " + simple.getModel().getRestriction().getBase().getLocalPart());
-				Logger.getLogger(MessageComplexityCalculator.class.getName()).debug("\t \t Adds: " + r);
-				acumWeight = acumWeight + r;
+//				Logger.getLogger(MessageComplexityCalculator.class.getName()).debug("\t \t Adds: " + r);
+//				acumWeight = acumWeight + r;
+				Logger.getLogger(MessageComplexityCalculator.class.getName()).debug("\t \t Adds: " + 1);
+				acumWeight = acumWeight + 1;
 			}
 			else{					
 				try{						
@@ -274,11 +287,17 @@ public class MessageComplexityCalculator {
 					while (iter.hasNext()) {
 						elemNext = iter.next();
 						Logger.getLogger(MessageComplexityCalculator.class.getName()).debug("\t next: " + elemNext.getQName().getLocalPart().trim());						
-						acumWeight += analyzeElement(elemNext, acumWeight); //Llamada recursiva
+						acumWeight += analyzeElement(elemNext, acumWeight); //Llamada recursiva						
+						if (flag == true) {							
+							acumWeight += 1;
+							Logger.getLogger(MessageComplexityCalculator.class.getName()).debug("Complex Element in Sequence. Adds: 1");							
+							flag = false;
+						}
+						
 					}						
 				}					
 				else {
-					Logger.getLogger(MessageComplexityCalculator.class.getName()).debug("Empty Sequence adds 1");
+					Logger.getLogger(MessageComplexityCalculator.class.getName()).debug("Empty Sequence Adds: 1");
 					acumWeight = acumWeight + 1;
 				}					
 			}								
@@ -365,7 +384,13 @@ public class MessageComplexityCalculator {
 
 			}								
 		}
-		analyzedTypes.put(tableKey, acumWeight);				
+		analyzedTypes.put(tableKey, acumWeight);			
+		if (acumWeight != 1){
+			flag = true;
+		}
+		else{
+			flag = false;
+		}
 		return acumWeight;
 	}
 
