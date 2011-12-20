@@ -139,10 +139,10 @@ public class MessageComplexityCalculator {
 			if (r != 0) {
 
 				Logger.getLogger(MessageComplexityCalculator.class.getName()).debug("\t Restriction: " + simple.getModel().getRestriction().getBase().getLocalPart());
-//				Logger.getLogger(MessageComplexityCalculator.class.getName()).debug("\t \t Adds: " + r);
-//				acumWeight = acumWeight + r;
-				Logger.getLogger(MessageComplexityCalculator.class.getName()).debug("\t \t Adds: " + 1);
-				acumWeight = acumWeight + 1;
+				Logger.getLogger(MessageComplexityCalculator.class.getName()).debug("\t \t Adds: " + r);
+				acumWeight = acumWeight + r;
+//				Logger.getLogger(MessageComplexityCalculator.class.getName()).debug("\t \t Adds: " + 1);
+//				acumWeight = acumWeight + 1;
 			}
 			else{					
 				try{						
@@ -172,7 +172,10 @@ public class MessageComplexityCalculator {
 						acumWeight = acumWeight + 1;
 					}												
 				}												
-			}																																													
+			}							
+			analyzedTypes.put(tableKey, acumWeight);						
+			flag = false;			
+			return acumWeight;
 		}
 		catch (Exception isComplexType){
 
@@ -291,7 +294,7 @@ public class MessageComplexityCalculator {
 						acumWeight += analyzeElement(elemNext, acumWeight); //Llamada recursiva						
 						if (flag == true) {							
 							acumWeight += 1;
-							Logger.getLogger(MessageComplexityCalculator.class.getName()).debug("Complex Element in Sequence. Adds: 1");							
+							Logger.getLogger(MessageComplexityCalculator.class.getName()).debug("Complex Element in Sequence: " + elemNext.getQName().getLocalPart().trim() + ". Adds: 1");							
 							flag = false;
 						}
 						
@@ -383,16 +386,17 @@ public class MessageComplexityCalculator {
 				// Ecuacion 16 - analisis de Atributos.					
 				acumWeight += analyzeAttributeGroup(complejo.getAttributes(), acumWeight); 
 
-			}								
+			}			
+			analyzedTypes.put(tableKey, acumWeight);			
+			if (acumWeight != 1){
+				flag = true;
+			}
+			else{
+				flag = false;
+			}
+			return acumWeight;
 		}
-		analyzedTypes.put(tableKey, acumWeight);			
-		if (acumWeight != 1){
-			flag = true;
-		}
-		else{
-			flag = false;
-		}
-		return acumWeight;
+		
 	}
 
 	public int countArgumentsFor(Element e) {
