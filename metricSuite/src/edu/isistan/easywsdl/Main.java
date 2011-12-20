@@ -1,6 +1,5 @@
 package edu.isistan.easywsdl;
 
-import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
 
@@ -34,9 +33,9 @@ public class Main {
 				sb.append(",");
 				sb.append( ms.getDMR(curr) );
 				sb.append(",");
-				sb.append( ms.getMRS(curr) );
+				sb.append( ms.getME(curr) );
 				sb.append(",");
-				sb.append( ms.getME(curr) );				
+				sb.append( ms.getMRS(curr) );				
 				System.out.println(sb.toString());
 			} catch (Exception e) {
 				Logger.getLogger(MessageComplexityCalculator.class.getName()).error(descUrl,e);

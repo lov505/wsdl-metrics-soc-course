@@ -9,7 +9,6 @@ import javax.xml.namespace.QName;
 import org.apache.log4j.Logger;
 import org.ow2.easywsdl.schema.api.Attribute;
 import org.ow2.easywsdl.schema.api.Element;
-import org.ow2.easywsdl.schema.api.Enumeration;
 import org.ow2.easywsdl.schema.api.Sequence;
 import org.ow2.easywsdl.schema.api.Type;
 import org.ow2.easywsdl.schema.impl.ComplexTypeImpl;
@@ -18,7 +17,9 @@ import org.ow2.easywsdl.schema.impl.SimpleTypeImpl;
 
 public class MessageComplexityCalculator {
 
-	public Hashtable<QName,Integer> analyzedTypes;			
+	public Hashtable<QName,Integer> analyzedTypes;		
+	public Hashtable<QName,Integer> analyzedArguments;
+	public Hashtable<QName,Integer> arguments;
 	private boolean flag; 
 
 	public int calculateFor(Element el) {
@@ -395,22 +396,54 @@ public class MessageComplexityCalculator {
 	}
 
 	public int countArgumentsFor(Element e) {
-		Type t = e.getType();
-		Logger.getLogger(MessageComplexityCalculator.class.getName()).debug("Type: " + e.getQName() );
-		if (t instanceof ComplexTypeImpl) {		
+		analyzedArguments = new Hashtable<QName,Integer>();
+		arguments = new Hashtable<QName,Integer>();
+		int c = countArgs(e);
+		Iterator<QName> recursiveRefs = analyzedArguments.keySet().iterator();
+		Logger.getLogger(MessageComplexityCalculator.class.getName()).debug("Buscando referencias recursivas en: " + e.getQName() );	
+		while (recursiveRefs.hasNext()) {
+			QName qName = (QName) recursiveRefs.next();
+			int refs = analyzedArguments.get(qName);
+			int q = arguments.get(qName);
+			Logger.getLogger(MessageComplexityCalculator.class.getName()).debug("Hay " + refs + " refs. recursivas c/u con peso " + q + " a: " + qName );
+			c += q*refs;
+		}
+		return c;
+	}
+	
+	public int countArgs(Element e) {	
+		if (e==null) 
+			return 0;	
+		int Nargs = 0;
+		Type t = e.getType();		
+		if (t instanceof ComplexTypeImpl) {			
+			if (t.getQName()!=null) {
+				if (analyzedArguments.containsKey(t.getQName())) {
+					int recursiveRefs = analyzedArguments.get(t.getQName());
+					recursiveRefs++;
+					analyzedArguments.put(t.getQName(), recursiveRefs);
+					Logger.getLogger(MessageComplexityCalculator.class.getName()).debug("Argumento recursivo: " + t.getQName() );
+					return 0;
+				} else {
+					analyzedArguments.put(t.getQName(), 0);
+				}
+			}
 			ComplexTypeImpl c = (ComplexTypeImpl) t;
-			int Nargs = 0;
-			// TO DO: Revisar si hace falta contemplar otros casos eje. restrictions
 			if (c.hasSequence()) {
 				List<Element> elements = c.getSequence().getElements();
-				for (Iterator iterator = elements.iterator(); iterator.hasNext();) {
-					Nargs += countArgumentsFor( ( Element) iterator.next() );				
+				for (int i=0; i<elements.size(); i++) {					
+					Nargs += countArgs( ( Element) elements.get(i) );				
 				}
 			}			
-			Nargs = (Nargs==0) ? 1 : Nargs;
-			return Nargs;
+			if (c.getAttributes()!=null) {
+				Nargs += c.getAttributes().size();
+			}				
+			Nargs = (Nargs==0) ? 1 : Nargs;	
+			if (t.getQName()!=null)
+				arguments.put(t.getQName(), Nargs);
 		} else {			  
-			return 1;			
-		}
+			Nargs = 1;
+		}					
+		return Nargs;
 	}	
 }
