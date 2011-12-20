@@ -162,9 +162,9 @@ public class MetricsSuite {
 		double[] NOMs = getMessageOccurrences(pairs);
 		double Nm = getMessageCount(url);
 		for (int i = 0; i < NOMs.length; i++) {
-			Logger.getLogger(MetricsSuite.class.getName()).debug("Par: "+ i + " NOM: " + NOMs[i] + " Nm:" + Nm + " PM:" + NOMs[i]/Nm);
-			double square = Math.pow(NOMs[i],2);
+			double square = Math.pow(NOMs[i],2);			
 			MRS += square;
+			Logger.getLogger(MetricsSuite.class.getName()).debug("Par: "+ i + " NOM: " + NOMs[i] + " NOM^2: " + square + " acum MRS: " + MRS);
 		}
 		return  MRS/Nm;
 	}
