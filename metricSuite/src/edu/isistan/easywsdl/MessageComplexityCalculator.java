@@ -139,10 +139,10 @@ public class MessageComplexityCalculator {
 			if (r != 0) {
 
 				Logger.getLogger(MessageComplexityCalculator.class.getName()).debug("\t Restriction: " + simple.getModel().getRestriction().getBase().getLocalPart());
-				Logger.getLogger(MessageComplexityCalculator.class.getName()).debug("\t \t Adds: " + r);
-				acumWeight = acumWeight + r;
-//				Logger.getLogger(MessageComplexityCalculator.class.getName()).debug("\t \t Adds: " + 1);
-//				acumWeight = acumWeight + 1;
+//				Logger.getLogger(MessageComplexityCalculator.class.getName()).debug("\t \t Adds: " + r);
+//				acumWeight = acumWeight + r;
+				Logger.getLogger(MessageComplexityCalculator.class.getName()).debug("\t \t Adds: " + 1);
+				acumWeight = acumWeight + 1;
 			}
 			else{					
 				try{						
@@ -151,8 +151,10 @@ public class MessageComplexityCalculator {
 					int u = simple.getModel().getUnion().getSimpleType().size();
 					if (u != 0){
 						Logger.getLogger(MessageComplexityCalculator.class.getName()).debug("\t Union: " + simple.getModel().getUnion().toString());
-						Logger.getLogger(MessageComplexityCalculator.class.getName()).debug("\t \t Adds: " + u);
-						acumWeight = acumWeight + u;						
+//						Logger.getLogger(MessageComplexityCalculator.class.getName()).debug("\t \t Adds: " + u);
+//						acumWeight = acumWeight + u;				
+						Logger.getLogger(MessageComplexityCalculator.class.getName()).debug("\t \t Adds: " + 1);
+						acumWeight = acumWeight + 1;
 					}					
 				}
 				catch (Exception noUnion){						
@@ -160,8 +162,7 @@ public class MessageComplexityCalculator {
 						//Ecuacion 17.4
 						//ws = l si el tipo simple esta derivado por lista
 						simple.getModel().getList();
-						Logger.getLogger(MessageComplexityCalculator.class.getName()).debug("\t List: " + simple.getModel().getList().getItemType().getLocalPart());
-					
+						Logger.getLogger(MessageComplexityCalculator.class.getName()).debug("\t List: " + simple.getModel().getList().getItemType().getLocalPart());					
 						Logger.getLogger(MessageComplexityCalculator.class.getName()).debug("\t \t Adds: 1");
 						acumWeight = acumWeight + 1;	
 					}
