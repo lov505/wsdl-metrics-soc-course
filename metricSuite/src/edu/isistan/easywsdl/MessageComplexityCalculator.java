@@ -88,13 +88,18 @@ public class MessageComplexityCalculator {
 		 //Si dispara una excepcion, lo casteamos a complejo y analizamos su estructura.
 
 		//Si el tipo tiene nombre definido lo utilizamos como clave en la hashtable. Caso contrario, utilizamos el nombre del elemento.
-		if (tipo.getQName() == null) {
-			tableKey = e.getQName();
-		} else {
-			tableKey = tipo.getQName();
+		try {
+			if (tipo.getQName() == null) {
+				tableKey = e.getQName();
+			} else {
+				tableKey = tipo.getQName();
+			}
+		} catch (Exception npe) {
+			Logger.getLogger(MessageComplexityCalculator.class.getName()).error("Exception occurs while analysing element:  " + e.getQName().getLocalPart());
+			return 0;
 		}
 		
-		acumWeight = 0;
+		acumWeight = 0;	
 		
 		//Chequeamos que el elemento actual no haya sido analizado previamente.
 		if (analyzedTypes.containsKey(tableKey)){
