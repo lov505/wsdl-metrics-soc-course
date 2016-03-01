@@ -1,0 +1,1 @@
+A suite of metrics to evaluate the quality of the XML web service in terms of its maintainability, including: data weight (DW), distinct message ratio (DMR), message entropy (ME) and message repetition scale (MRS).
